@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ECR Soja 2025/26 · MOBILE · CREA Córdoba Norte</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:Arial,Helvetica,sans-serif;background:#F6F4EF;color:#1A1A1A;font-size:14px;-webkit-text-size-adjust:100%;touch-action:pan-y;}
+:root{
+  --gd:#2D5A1B;--gm:#4A7C2E;--gl:#7FB33A;
+  --yl:#F2C40E;--or:#E8751A;--red:#B83232;
+  --lgray:#F2F2EF;--mgray:#D4D2CD;
+  --text:#1A1A1A;--dim:#666;
+  --hdr:52px;--nav:56px;
+}
+
+/* ── GLOBAL TOUCH FIXES ─────────────────────────────────────── */
+button,
+[role="button"],
+.nav-card,
+.fbar-toggle,
+.nb-item,
+.drw-item,
+.fbar-reset,
+#hamburger,
+#drawer-overlay {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button:focus,
+[role="button"]:focus {
+  outline: none;
+}
+/* Ensure selects don't cause layout shift on iOS focus */
+select {
+  touch-action: manipulation;
+  font-size: 16px; /* prevents iOS auto-zoom on focus */
+}
+
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+#hdr{
+  position:fixed;top:0;left:0;right:0;height:var(--hdr);
+  background:var(--gd);display:flex;align-items:center;
+  padding:0 12px;gap:10px;z-index:200;
+  border-bottom:3px solid var(--yl);
+}
+#hdr-logo{height:30px;object-fit:contain;flex-shrink:0;}
+#hdr-info{flex:1;min-width:0;}
+#hdr-info .main{font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#hdr-info .sub{font-size:9px;color:rgba(255,255,255,.55);white-space:nowrap;}
+#hdr-prelim{font-size:7.5px;font-weight:700;letter-spacing:1.5px;color:#E87070;flex-shrink:0;text-align:right;}
+#hdr-prelim span{display:block;}
+
+/* ── HAMBURGER ─────────────────────────────────────────────── */
+#hamburger{
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:5px;padding:6px;flex-shrink:0;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  min-width:44px;min-height:44px;
+}
+#hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .2s;}
+
+/* ── DRAWER NAV ─────────────────────────────────────────────── */
+#drawer{
+  position:fixed;top:0;left:-280px;bottom:0;width:260px;
+  background:#1F4112;z-index:300;overflow-y:auto;
+  transition:left .25s ease;
+  padding-top:var(--hdr);
+  -webkit-overflow-scrolling:touch;
+}
+#drawer.open{left:0;}
+#drawer-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:299;
+  touch-action:manipulation;
+  cursor:pointer;
+}
+#drawer-overlay.open{display:block;}
+.drw-section{
+  padding:14px 14px 6px;font-size:7.5px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);
+}
+.drw-item{
+  display:flex;align-items:center;gap:10px;padding:11px 14px;
+  cursor:pointer;background:transparent;width:100%;text-align:left;
+  color:rgba(255,255,255,.75);font-family:Arial,Helvetica,sans-serif;
+  font-size:13px;border:none;border-left:3px solid transparent;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;
+}
+.drw-item:active,.drw-item.active{background:rgba(242,196,14,.1);color:#fff;border-left-color:var(--yl);}
+.drw-item .di{width:18px;text-align:center;font-size:14px;flex-shrink:0;}
+.drw-item .dl{flex:1;}
+.drw-item .dp{font-size:8.5px;font-weight:700;color:rgba(255,255,255,.25);}
+.drw-item.active .dp{color:var(--yl);}
+#drw-stats{padding:12px 14px;border-top:1px solid rgba(255,255,255,.08);margin-top:8px;}
+.drw-stat{display:flex;justify-content:space-between;padding:4px 0;font-size:11px;color:rgba(255,255,255,.5);}
+.drw-stat span{color:rgba(255,255,255,.85);font-weight:700;}
+#drw-footer{padding:10px 14px 24px;font-size:9px;color:rgba(255,255,255,.3);}
+
+/* ── MAIN ──────────────────────────────────────────────────── */
+#main{
+  padding-top:var(--hdr);padding-bottom:var(--nav);
+  min-height:100vh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* ── SECTIONS ──────────────────────────────────────────────── */
+.sec{display:none;}
+.sec.active{display:block;}
+
+/* ── SECTION HEADER ─────────────────────────────────────────── */
+.sec-hdr{
+  background:var(--gd);padding:12px 14px 10px;
+  border-bottom:2px solid var(--yl);
+}
+.sec-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.5);text-transform:uppercase;}
+.sec-title{font-size:17px;font-weight:700;color:#fff;margin-top:2px;}
+.sec-sub{font-size:10px;color:rgba(255,255,255,.55);margin-top:3px;line-height:1.4;}
+.sec-badge{
+  display:inline-block;margin-top:6px;
+  font-size:10px;font-weight:700;color:var(--yl);
+  background:rgba(242,196,14,.1);padding:3px 8px;border-radius:3px;
+  border:1px solid rgba(242,196,14,.25);
+}
+
+/* ── FILTER PANEL ───────────────────────────────────────────── */
+.fbar{background:#F2F2EF;border-bottom:1px solid #E4E2DC;padding:10px 12px;}
+.fbar-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-size:12px;font-weight:700;color:var(--gd);
+  padding:4px 0;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;
+  min-height:44px;
+}
+.fbar-toggle-icon{font-size:14px;color:var(--gm);}
+.fbar-body{display:none;margin-top:10px;flex-direction:column;gap:8px;}
+.fbar-body.open{display:flex;}
+.fbar-body select{
+  width:100%;padding:8px 10px;border:1px solid #D4D2CD;
+  border-radius:4px;font-size:12px;background:#fff;color:#1A1A1A;
+  -webkit-appearance:none;
+  touch-action:manipulation;
+  font-size:16px;
+}
+.fbar-body select:focus{outline:none;border-color:var(--gm);}
+.fbar-reset{
+  width:100%;padding:9px;border:1px solid var(--red);color:var(--red);
+  background:#fff;border-radius:4px;font-size:12px;font-weight:700;cursor:pointer;
+  margin-top:4px;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ── CONTENT AREA ───────────────────────────────────────────── */
+.sec-body{padding:12px;}
+.card{
+  background:#fff;border-radius:6px;padding:14px;margin-bottom:12px;
+  border:1px solid #E4E2DC;
+}
+.card-title{font-size:11.5px;font-weight:700;color:var(--gd);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;}
+.divlbl{font-size:11px;font-weight:700;color:#555;margin:14px 0 8px;text-transform:uppercase;letter-spacing:.04em;}
+
+/* ── KPI GRID ────────────────────────────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.kpi-card{
+  background:#fff;border:1px solid #E4E2DC;border-radius:6px;
+  padding:12px;text-align:center;
+}
+.kpi-val{font-size:22px;font-weight:700;color:var(--gd);line-height:1;}
+.kpi-lbl{font-size:10px;color:#888;margin-top:4px;}
+.kpi-card.accent{background:var(--gd);border-color:var(--gd);}
+.kpi-card.accent .kpi-val{color:var(--yl);}
+.kpi-card.accent .kpi-lbl{color:rgba(255,255,255,.6);}
+
+/* ── POSITIVE / NEGATIVE ─────────────────────────────────────── */
+.pos{color:var(--gm);font-weight:700;}
+.neg{color:var(--red);font-weight:700;}
+
+/* ── BADGE ───────────────────────────────────────────────────── */
+.badge{
+  display:inline-block;font-size:9px;font-weight:700;padding:2px 5px;
+  border-radius:2px;margin-right:3px;
+}
+.b6{background:#DBEAFE;color:#1E40AF;}
+.b5{background:#DCFCE7;color:#166534;}
+.b4{background:#FEF3C7;color:#92400E;}
+
+/* ── SITE CARD ───────────────────────────────────────────────── */
+.site-card{
+  background:#fff;border:1px solid #E4E2DC;border-radius:6px;
+  padding:12px;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.site-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.site-info{flex:1;min-width:0;}
+.site-name{font-size:13px;font-weight:700;color:#1A1A1A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.site-meta{font-size:10px;color:#888;margin-top:2px;}
+.site-val{text-align:right;flex-shrink:0;}
+.site-rend{font-size:15px;font-weight:700;color:var(--gd);}
+.site-ie{font-size:11px;font-weight:700;}
+
+/* ── MATERIAL CARD ─────────────────────────────────────────── */
+.mat-card{
+  background:#fff;border:1px solid #E4E2DC;border-radius:6px;
+  padding:10px 12px;margin-bottom:7px;
+}
+.mat-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.mat-rank{font-size:11px;font-weight:700;color:#888;min-width:22px;}
+.mat-name{font-size:13px;font-weight:700;color:#1A1A1A;flex:1;}
+.mat-emp{font-size:10px;color:#888;}
+.mat-bar-wrap{height:8px;background:#EEEEEB;border-radius:4px;overflow:hidden;}
+.mat-bar{height:100%;border-radius:4px;background:var(--gm);}
+.mat-vals{display:flex;justify-content:space-between;margin-top:5px;font-size:11px;}
+.mat-rend{font-weight:700;color:#1A1A1A;}
+.mat-idx{}
+
+/* ── HEATMAP ROW ─────────────────────────────────────────────── */
+.hm-row{display:flex;gap:2px;margin-bottom:2px;align-items:center;}
+.hm-label{font-size:9px;color:#333;width:90px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.hm-cell{flex:1;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;}
+
+/* ── NAV BAR ─────────────────────────────────────────────────── */
+#navbar{
+  position:fixed;bottom:0;left:0;right:0;height:var(--nav);
+  background:#fff;border-top:1px solid #E4E2DC;
+  display:flex;z-index:200;
+  box-shadow:0 -2px 8px rgba(0,0,0,.07);
+}
+.nb-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:2px;cursor:pointer;
+  border:none;background:none;color:#888;
+  font-size:8.5px;padding:4px 2px;
+  transition:color .15s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;
+  min-height:44px;
+}
+.nb-item.active{color:var(--gd);}
+.nb-item.active .nb-icon{color:var(--gd);}
+.nb-icon{font-size:18px;line-height:1;}
+
+/* ── CHARTS ─────────────────────────────────────────────────── */
+.chart-wrap{width:100%;overflow-x:auto;}
+.chart-wrap svg{display:block;}
+
+/* ── HOME HERO ─────────────────────────────────────────────── */
+.hero{
+  background:var(--gd);padding:20px 14px 16px;
+  border-bottom:3px solid var(--yl);
+}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;}
+.hero-title{font-size:32px;font-weight:700;color:#fff;line-height:1;margin-top:4px;}
+.hero-sub{font-size:13px;color:var(--yl);font-weight:700;margin-top:2px;}
+.hero-bar{width:40px;height:3px;background:var(--yl);margin:10px 0;}
+.hero-desc{font-size:11px;color:rgba(255,255,255,.65);line-height:1.55;}
+.hero-desc em{color:rgba(255,255,255,.85);font-style:normal;}
+
+/* ── NAV CARDS ─────────────────────────────────────────────── */
+.nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.nav-card{
+  background:#fff;border:1px solid #E4E2DC;border-radius:6px;
+  padding:12px;cursor:pointer;display:flex;flex-direction:column;
+  gap:4px;transition:border-color .15s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;
+}
+.nav-card:active{border-color:var(--gm);}
+.nc-pg{font-size:9px;font-weight:700;color:var(--yl);background:var(--gd);display:inline-block;padding:2px 6px;border-radius:2px;width:fit-content;}
+.nc-title{font-size:12px;font-weight:700;color:#1A1A1A;margin-top:4px;}
+.nc-desc{font-size:10px;color:#888;line-height:1.4;}
+
+/* ── TABLE ─────────────────────────────────────────────────── */
+.dt{width:100%;border-collapse:collapse;font-size:11.5px;}
+.dt th{background:#F2F2EF;padding:8px 6px;text-align:left;font-size:10px;font-weight:700;color:#555;border-bottom:2px solid #E4E2DC;}
+.dt td{padding:7px 6px;border-bottom:1px solid #F0EEEA;vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.dt .r{text-align:right;}
+
+/* ── LEGEND ─────────────────────────────────────────────────── */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#555;}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.legend-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+/* ── DISCLAIMER ─────────────────────────────────────────────── */
+.disc{font-size:9px;color:#AAA;margin-top:10px;padding-top:8px;border-top:.5px solid #E4E2DC;line-height:1.5;}
+
+/* ── FW TABLE ──────────────────────────────────────────────── */
+.fw-card{
+  background:#fff;border:1px solid #E4E2DC;border-radius:6px;
+  padding:10px 12px;margin-bottom:7px;
+}
+.fw-name{font-size:13px;font-weight:700;color:#1A1A1A;}
+.fw-meta{font-size:10px;color:#888;margin-top:2px;}
+.fw-bar-row{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.fw-bar-label{font-size:10px;color:#666;width:26px;flex-shrink:0;}
+.fw-bar-wrap{flex:1;height:8px;background:#EEEEEB;border-radius:4px;overflow:hidden;position:relative;}
+.fw-bar-fill{height:100%;border-radius:4px;}
+.fw-bar-mid{position:absolute;top:0;bottom:0;left:50%;width:1.5px;background:#B83232;opacity:.6;}
+.fw-bar-val{font-size:11px;font-weight:700;width:40px;text-align:right;flex-shrink:0;}
+
+/* ── MC CAMP BADGE ──────────────────────────────────────────── */
+.camp-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:middle;}
+</style>
+
+<script>
+// Navigation — defined in <head> so available immediately on any tap
+var _curSec = 'home';
+
+function showSec(id) {
+  var secs = document.querySelectorAll('.sec');
+  for (var i = 0; i < secs.length; i++) secs[i].classList.remove('active');
+  var el = document.getElementById('sec-' + id);
+  if (el) el.classList.add('active');
+  // Highlight nav
+  var drwItems = document.querySelectorAll('.drw-item');
+  for (var i = 0; i < drwItems.length; i++) drwItems[i].classList.remove('active');
+  var nbItems = document.querySelectorAll('.nb-item');
+  for (var i = 0; i < nbItems.length; i++) nbItems[i].classList.remove('active');
+  var drw = document.querySelector('.drw-item[data-sec="' + id + '"]');
+  if (drw) drw.classList.add('active');
+  var nb = document.getElementById('nb-' + id);
+  if (nb) nb.classList.add('active');
+  _curSec = id;
+  // Scroll main to top
+  var main = document.getElementById('main');
+  if (main) main.scrollTop = 0;
+  // Lazy render (data script may not be loaded yet — safe to call if defined)
+  setTimeout(function() {
+    try {
+      if (id === 'p1' && typeof renderP1 === 'function') renderP1();
+      else if (id === 'p2' && typeof renderP2 === 'function') renderP2();
+      else if (id === 'p3' && typeof renderP3 === 'function') renderP3();
+      else if (id === 'p4' && typeof renderP4 === 'function') renderP4();
+      else if (id === 'p5' && typeof renderP5 === 'function') renderP5();
+      else if (id === 'p6' && typeof renderP6 === 'function') renderP6();
+      else if (id === 'p7' && typeof renderP7 === 'function') renderP7();
+      else if (id === 'p8' && typeof renderP8 === 'function') renderP8();
+      else if (id === 'p9' && typeof renderP9 === 'function') renderP9();
+      else if (id === 'p10' && typeof renderP10 === 'function') renderP10();
+    } catch(e) {}
+  }, 60);
+}
+
+function toggleDrawer() {
+  var d = document.getElementById('drawer');
+  var o = document.getElementById('drawer-overlay');
+  if (!d) return;
+  var open = d.classList.contains('open');
+  if (open) {
+    d.classList.remove('open');
+    if (o) o.style.display = 'none';
+  } else {
+    d.classList.add('open');
+    if (o) o.style.display = 'block';
+  }
+}
+
+function closeDrawer() {
+  var d = document.getElementById('drawer');
+  var o = document.getElementById('drawer-overlay');
+  if (d) d.classList.remove('open');
+  if (o) o.style.display = 'none';
+}
+
+function toggleFbar(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var icon = document.querySelector('[data-target="' + id + '"] .fbar-toggle-icon');
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    if (icon) icon.textContent = '▼';
+  } else {
+    el.classList.add('open');
+    if (icon) icon.textContent = '▲';
+  }
+}
+</script>
+
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────── -->
+<header id="hdr">
+  <button id="hamburger" onclick="toggleDrawer()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div id="hdr-info">
+    <div class="main">ECR SOJA 2025/26 · CREA COR</div>
+    <div class="sub">MESA AGRÍCOLA · JUNIO 2026</div>
+  </div>
+  <div id="hdr-prelim">
+    <span>PRELIMINAR</span>
+    <span>NO COMPARTIR</span>
+  </div>
+</header>
+
+<!-- ── DRAWER OVERLAY ─────────────────────────────────────────── -->
+<div id="drawer-overlay" role="button" aria-label="Cerrar menú" onclick="closeDrawer()"></div>
+
+<!-- ── DRAWER NAV ─────────────────────────────────────────────── -->
+<nav id="drawer">
+  <div class="drw-section">Navegación</div>
+  <button class="drw-item active" data-sec="home" onclick="showSec('home');closeDrawer()"><span class="di">⌂</span><span class="dl">Inicio</span></button>
+  <button class="drw-item" data-sec="p1" onclick="showSec('p1');closeDrawer()"><span class="di">◉</span><span class="dl">Resumen Ejecutivo</span><span class="dp">P1</span></button>
+  <button class="drw-item" data-sec="p2" onclick="showSec('p2');closeDrawer()"><span class="di">◎</span><span class="dl">Sitios</span><span class="dp">P2</span></button>
+  <button class="drw-item" data-sec="p3" onclick="showSec('p3');closeDrawer()"><span class="di">▦</span><span class="dl">Desempeño</span><span class="dp">P3</span></button>
+  <button class="drw-item" data-sec="p4" onclick="showSec('p4');closeDrawer()"><span class="di">⬡</span><span class="dl">Segmentación</span><span class="dp">P4</span></button>
+  <button class="drw-item" data-sec="p5" onclick="showSec('p5');closeDrawer()"><span class="di">▤</span><span class="dl">Relativo</span><span class="dp">P5</span></button>
+  <button class="drw-item" data-sec="p6" onclick="showSec('p6');closeDrawer()"><span class="di">◈</span><span class="dl">Estabilidad</span><span class="dp">P6</span></button>
+  <button class="drw-item" data-sec="p7" onclick="showSec('p7');closeDrawer()"><span class="di">◫</span><span class="dl">Componentes</span><span class="dp">P7</span></button>
+  <button class="drw-item" data-sec="p8" onclick="showSec('p8');closeDrawer()"><span class="di">◬</span><span class="dl">Adaptabilidad</span><span class="dp">P8</span></button>
+  <div class="drw-section" style="margin-top:8px">Multicampaña</div>
+  <button class="drw-item" data-sec="p9" onclick="showSec('p9');closeDrawer()"><span class="di">☰</span><span class="dl">Contexto MC</span><span class="dp">P9</span></button>
+  <button class="drw-item" data-sec="p10" onclick="showSec('p10');closeDrawer()"><span class="di">◆</span><span class="dl">Estabilidad MC</span><span class="dp">P10</span></button>
+  <div id="drw-stats">
+    <div class="drw-stat">Media red <span id="drw-gm">4.194 kg/ha</span></div>
+    <div class="drw-stat">Observaciones <span id="drw-n">198</span></div>
+    <div class="drw-stat">Materiales <span id="drw-mats">26</span></div>
+    <div class="drw-stat">Sitios <span>10</span></div>
+    <div class="drw-stat">Empresas <span id="drw-emps">8</span></div>
+    <div class="drw-stat">CV general <span id="drw-cv">14,5%</span></div>
+  </div>
+  <div id="drw-footer">
+    ECR Analytics · Soja 2025/26<br>
+    by Daniela Vecchio
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main id="main">
+
+<!-- ══ HOME ══════════════════════════════════════════════════════ -->
+<section id="sec-home" class="sec active">
+  <div class="hero">
+    <div class="hero-tag">Ensayos Comparativos de Rendimiento · CREA Córdoba</div>
+    <div class="hero-title">SOJA</div>
+    <div class="hero-sub">CAMPAÑA 2025/26</div>
+    <div class="hero-bar"></div>
+    <div class="hero-desc">
+      Red de <em>10 sitios</em> en Córdoba. <em>26 materiales</em> de <em>8 empresas</em>. 198 observaciones.<br>
+      Análisis descriptivo fase 1. Outlier aceptado: LAS ARRIAS × NORD 4824 SE.
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-grid">
+      <div class="kpi-card accent">
+        <div class="kpi-val" id="hm-gm">4.194</div>
+        <div class="kpi-lbl">kg/ha media red</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">10</div>
+        <div class="kpi-lbl">sitios evaluados</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="hm-mats">26</div>
+        <div class="kpi-lbl">materiales</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="hm-cv">14,5%</div>
+        <div class="kpi-lbl">CV general</div>
+      </div>
+    </div>
+
+    <div class="divlbl">Acceso rápido</div>
+    <div class="nav-cards">
+      <div class="nav-card" role="button" tabindex="0" data-sec="p1" onclick="showSec('p1')"><div class="nc-pg">P1</div><div class="nc-title">Resumen</div><div class="nc-desc">KPIs y hallazgos principales</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p2" onclick="showSec('p2')"><div class="nc-pg">P2</div><div class="nc-title">Sitios</div><div class="nc-desc">Mapa y fechas de siembra</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p3" onclick="showSec('p3')"><div class="nc-pg">P3</div><div class="nc-title">Desempeño</div><div class="nc-desc">Ranking de materiales</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p4" onclick="showSec('p4')"><div class="nc-pg">P4</div><div class="nc-title">Segmentación</div><div class="nc-desc">Por ciclo y tecnología</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p5" onclick="showSec('p5')"><div class="nc-pg">P5</div><div class="nc-title">Relativo</div><div class="nc-desc">Heatmap e índice</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p6" onclick="showSec('p6')"><div class="nc-pg">P6</div><div class="nc-title">Estabilidad</div><div class="nc-desc">Media vs CV</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p8" onclick="showSec('p8')"><div class="nc-pg">P8</div><div class="nc-title">Adaptabilidad</div><div class="nc-desc">Finlay-Wilkinson β</div></div>
+      <div class="nav-card" role="button" tabindex="0" data-sec="p9" onclick="showSec('p9')"><div class="nc-pg">P9</div><div class="nc-title">Multicampaña</div><div class="nc-desc">Contexto histórico</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ P1 RESUMEN EJECUTIVO ══════════════════════════════════════ -->
+<section id="sec-p1" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 1</div>
+    <div class="sec-title">Resumen Ejecutivo</div>
+    <div class="sec-sub">KPIs principales · Hallazgos · Ambientes</div>
+    <div class="sec-badge" id="p1-badge">Soja · 2025/26</div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-grid">
+      <div class="kpi-card accent">
+        <div class="kpi-val" id="p1-gm">4.194</div>
+        <div class="kpi-lbl">kg/ha media red</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p1-n">198</div>
+        <div class="kpi-lbl">observaciones</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p1-mats">26</div>
+        <div class="kpi-lbl">materiales</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p1-cv">14,5%</div>
+        <div class="kpi-lbl">CV general</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p1-ie">1.499</div>
+        <div class="kpi-lbl">kg/ha rango IE</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p1-emps">8</div>
+        <div class="kpi-lbl">empresas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Hallazgos analíticos</div>
+      <ul style="font-size:12px;line-height:1.65;color:#333;padding-left:18px;">
+        <li>Líder de red: <strong>P 51A25 SE</strong> (Pioneer)</li>
+        <li>Ciclo 5 Corto domina en ambientes favorables</li>
+        <li>Rango ambiental IE: 1.499 kg/ha (MI GRANJA vs EUFRASIO LOZA)</li>
+        <li>NEO 50S22 SE: mejor desempeño relativo zona norte</li>
+        <li>Materiales 4 Largo con mayor estabilidad inter-ambiental</li>
+        <li>Outlier aceptado: LAS ARRIAS × NORD 4824 SE (5.983 kg/ha)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Clasificación de ambientes (IE)</div>
+      <div id="p1-sites-render"></div>
+    </div>
+
+    <div class="disc">Análisis descriptivo · Sin ANOVA · Sin LSD · Sin modelos mixtos</div>
+  </div>
+</section>
+
+<!-- ══ P2 SITIOS ══════════════════════════════════════════════════ -->
+<section id="sec-p2" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 2</div>
+    <div class="sec-title">Contexto de la Red</div>
+    <div class="sec-sub">Sitios · Fechas · Índice ambiental</div>
+    <div class="sec-badge" id="p2-badge">10 sitios · Córdoba 2025/26</div>
+  </div>
+  <div class="sec-body">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="background:var(--gd);padding:10px 12px 8px;">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.05em;">Mapa de sitios · IE = Índice Ambiental</div>
+      </div>
+      <div id="p2-map" style="padding:8px;"></div>
+    </div>
+
+    <div class="divlbl">Cronología de siembra</div>
+    <div class="card" style="padding:10px;"><div id="p2-chron"></div></div>
+
+    <div class="divlbl">Resumen por sitio</div>
+    <div id="p2-site-cards"></div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#2D5A1B"></div>IE &gt; +600</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4A7C2E"></div>IE 0/+600</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E8751A"></div>IE -600/0</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#B83232"></div>IE &lt; -600</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ P3 DESEMPEÑO ═══════════════════════════════════════════════ -->
+<section id="sec-p3" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 3</div>
+    <div class="sec-title">Desempeño General</div>
+    <div class="sec-sub">Ranking · Boxplot por sitio</div>
+    <div class="sec-badge" id="p3-badge">198 obs · 10 sitios · 26 materiales</div>
+  </div>
+  <div class="fbar" id="fbar3">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb3" onclick="toggleFbar('fb3')">
+      <span>Filtros</span><span class="fbar-toggle-icon" id="fb3-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb3">
+      <select id="f3-zona" data-render="renderP3" onchange="renderP3()">
+        <option value="">Todas las zonas</option>
+        <option value="1">Zona 1</option><option value="2">Zona 2</option>
+        <option value="4">Zona 4</option><option value="5">Zona 5</option>
+      </select>
+      <select id="f3-sitio" data-render="renderP3" onchange="renderP3()">
+        <option value="">Todos los sitios</option>
+        <option>ARROYITO</option><option>CAPILLA DE LOS REMEDIOS</option>
+        <option>CAÑADA DE LUQUE</option><option>EUFRASIO LOZA</option>
+        <option>LA DORMIDA</option><option>LAGUNA LARGA</option>
+        <option>LAS ARRIAS</option><option>MI GRANJA</option>
+        <option>MONTE CRISTO</option><option>SACANTA</option>
+      </select>
+      <select id="f3-ciclo" data-render="renderP3" onchange="renderP3()">
+        <option value="">Todos los ciclos</option>
+        <option value="6 CORTO">6 Corto</option>
+        <option value="5 CORTO">5 Corto</option>
+        <option value="4 LARGO">4 Largo</option>
+      </select>
+      <select id="f3-tech" data-render="renderP3" onchange="renderP3()">
+        <option value="">Todas las tecnologías</option>
+        <option value="en">Enlist</option><option value="sts">STS</option>
+        <option value="ip">IPRO/Conkesta</option><option value="conv">Convencional</option>
+      </select>
+      <button class="fbar-reset" data-page="3" onclick="resetP3()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="divlbl">Ranking de materiales</div>
+    <div id="p3-rank-cards"></div>
+
+    <div class="divlbl">Boxplot por sitio</div>
+    <div class="card" style="padding:10px;">
+      <div class="chart-wrap" id="p3-site-bp"></div>
+    </div>
+    <div class="disc">Análisis descriptivo · Sin ANOVA · Outlier aceptado: LAS ARRIAS × NORD 4824 SE (5.983 kg/ha)</div>
+  </div>
+</section>
+
+<!-- ══ P4 SEGMENTACIÓN ════════════════════════════════════════════ -->
+<section id="sec-p4" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 4</div>
+    <div class="sec-title">Segmentación Genética</div>
+    <div class="sec-sub">Por tecnología · Por ciclo · TOP 3</div>
+    <div class="sec-badge" id="p4-badge">198 obs · 26 materiales</div>
+  </div>
+  <div class="fbar">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb4" onclick="toggleFbar('fb4')">
+      <span>Filtros</span><span class="fbar-toggle-icon" id="fb4-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb4">
+      <select id="f4-zona" data-render="renderP4" onchange="renderP4()">
+        <option value="">Todas las zonas</option>
+        <option value="1">Zona 1</option><option value="2">Zona 2</option>
+        <option value="4">Zona 4</option><option value="5">Zona 5</option>
+      </select>
+      <select id="f4-tech" data-render="renderP4" onchange="renderP4()">
+        <option value="">Todas las tecnologías</option>
+        <option value="en">Enlist</option><option value="sts">STS</option>
+        <option value="ip">IPRO/Conkesta</option><option value="conv">Convencional</option>
+      </select>
+      <select id="f4-ciclo" data-render="renderP4" onchange="renderP4()">
+        <option value="">Todos los ciclos</option>
+        <option value="6 CORTO">6 Corto</option>
+        <option value="5 CORTO">5 Corto</option>
+        <option value="4 LARGO">4 Largo</option>
+      </select>
+      <button class="fbar-reset" data-page="4" onclick="resetP4()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="divlbl">Rendimiento por ciclo</div>
+    <div class="card" style="padding:10px;"><div id="p4-ciclo-chart"></div></div>
+
+    <div class="divlbl">Rendimiento por tecnología</div>
+    <div class="card" style="padding:10px;"><div id="p4-tech-chart"></div></div>
+
+    <div class="divlbl">TOP 5 materiales</div>
+    <div id="p4-top5"></div>
+    <div class="disc">Análisis descriptivo · Sin ANOVA · Outlier aceptado: LAS ARRIAS × NORD 4824 SE</div>
+  </div>
+</section>
+
+<!-- ══ P5 DESEMPEÑO RELATIVO ══════════════════════════════════════ -->
+<section id="sec-p5" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 5</div>
+    <div class="sec-title">Desempeño Relativo</div>
+    <div class="sec-sub">Heatmap · % sobre media · Índice relativo</div>
+    <div class="sec-badge" id="p5-badge">198 obs</div>
+  </div>
+  <div class="fbar">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb5" onclick="toggleFbar('fb5')">
+      <span>Filtros</span><span class="fbar-toggle-icon" id="fb5-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb5">
+      <select id="f5-ciclo" data-render="renderP5" onchange="renderP5()">
+        <option value="">Todos los ciclos</option>
+        <option value="6 CORTO">6 Corto</option>
+        <option value="5 CORTO">5 Corto</option>
+        <option value="4 LARGO">4 Largo</option>
+      </select>
+      <select id="f5-tech" data-render="renderP5" onchange="renderP5()">
+        <option value="">Todas las tecnologías</option>
+        <option value="en">Enlist</option><option value="sts">STS</option>
+        <option value="ip">IPRO/Conkesta</option><option value="conv">Convencional</option>
+      </select>
+      <button class="fbar-reset" data-page="5" onclick="resetP5()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="divlbl">% de ambientes sobre media del sitio</div>
+    <div class="card" style="padding:10px;"><div id="p5-pct-chart"></div></div>
+
+    <div class="divlbl">Índice relativo — Media red = 100</div>
+    <div class="card" style="padding:10px;"><div id="p5-idx-chart"></div></div>
+
+    <div class="divlbl">Heatmap simplificado (diff vs media sitio)</div>
+    <div class="card" style="padding:10px;overflow-x:auto;"><div id="p5-hm"></div></div>
+    <div class="disc">Análisis descriptivo · Sin inferencia estadística</div>
+  </div>
+</section>
+
+<!-- ══ P6 ESTABILIDAD ════════════════════════════════════════════ -->
+<section id="sec-p6" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 6</div>
+    <div class="sec-title">Estabilidad de Rendimiento</div>
+    <div class="sec-sub">Media vs CV · Cuadrantes de adaptabilidad</div>
+    <div class="sec-badge" id="p6-badge">26 materiales</div>
+  </div>
+  <div class="fbar">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb6" onclick="toggleFbar('fb6')">
+      <span>Filtros</span><span class="fbar-toggle-icon" id="fb6-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb6">
+      <select id="f6-ciclo" data-render="renderP6" onchange="renderP6()">
+        <option value="">Todos los ciclos</option>
+        <option value="6 CORTO">6 Corto</option>
+        <option value="5 CORTO">5 Corto</option>
+        <option value="4 LARGO">4 Largo</option>
+      </select>
+      <select id="f6-tech" data-render="renderP6" onchange="renderP6()">
+        <option value="">Todas las tecnologías</option>
+        <option value="en">Enlist</option><option value="sts">STS</option>
+        <option value="ip">IPRO/Conkesta</option><option value="conv">Convencional</option>
+      </select>
+      <button class="fbar-reset" data-page="6" onclick="resetP6()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="divlbl">Media vs CV inter-ambiental</div>
+    <div class="card" style="padding:10px;"><div id="p6-scatter"></div></div>
+
+    <div class="divlbl">Clasificación por cuadrante</div>
+    <div id="p6-quad-cards"></div>
+    <div class="disc">Cuadrantes: Alto rend/Alta estab (ideal); Alto rend/Baja estab; Bajo rend/Alta estab; Bajo rend/Baja estab</div>
+  </div>
+</section>
+
+<!-- ══ P7 COMPONENTES ════════════════════════════════════════════ -->
+<section id="sec-p7" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 7</div>
+    <div class="sec-title">Componentes de Rendimiento</div>
+    <div class="sec-sub">Granos/m² · Peso mil granos</div>
+    <div class="sec-badge" id="p7-badge">198 obs</div>
+  </div>
+  <div class="sec-body">
+    <div class="card">
+      <div class="card-title">Correlaciones</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:120px;text-align:center;padding:10px;background:#F8FBF5;border-radius:4px;border:1px solid #E0EDD8;">
+          <div style="font-size:20px;font-weight:700;color:var(--gd);">r = 0,686</div>
+          <div style="font-size:10px;color:#888;margin-top:4px;">Granos/m²</div>
+        </div>
+        <div style="flex:1;min-width:120px;text-align:center;padding:10px;background:#F8FBF5;border-radius:4px;border:1px solid #E0EDD8;">
+          <div style="font-size:20px;font-weight:700;color:var(--gm);">r = 0,463</div>
+          <div style="font-size:10px;color:#888;margin-top:4px;">Peso mil granos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divlbl">Scatter rend. vs granos/m²</div>
+    <div class="card" style="padding:10px;"><div id="p7-scatter-g"></div></div>
+
+    <div class="divlbl">Scatter rend. vs peso mil granos</div>
+    <div class="card" style="padding:10px;"><div id="p7-scatter-p"></div></div>
+
+    <div class="disc">r(granos/m²) = 0,686 · r(peso mil g.) = 0,463. Análisis descriptivo. Outlier aceptado: LAS ARRIAS × NORD 4824 SE</div>
+  </div>
+</section>
+
+<!-- ══ P8 ADAPTABILIDAD ═══════════════════════════════════════════ -->
+<section id="sec-p8" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 8</div>
+    <div class="sec-title">Adaptabilidad Ambiental</div>
+    <div class="sec-sub">Finlay-Wilkinson · β de regresión</div>
+    <div class="sec-badge" id="p8-badge">26 materiales</div>
+  </div>
+  <div class="fbar">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb8" onclick="toggleFbar('fb8')">
+      <span>Filtros</span><span class="fbar-toggle-icon" id="fb8-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb8">
+      <select id="f8-ciclo" data-render="renderP8" onchange="renderP8()">
+        <option value="">Todos los ciclos</option>
+        <option value="6 CORTO">6 Corto</option>
+        <option value="5 CORTO">5 Corto</option>
+        <option value="4 LARGO">4 Largo</option>
+      </select>
+      <button class="fbar-reset" data-page="8" onclick="resetP8()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="card" style="padding:10px;font-size:11px;line-height:1.6;color:#555;">
+      <strong style="color:var(--gd);">Interpretación β:</strong><br>
+      β &lt; 0,9 → adaptados a ambientes desfavorables<br>
+      β ≈ 1 → adaptación amplia<br>
+      β &gt; 1 → respuesta en ambientes favorables<br>
+      β &gt; 1,3 → específico alto potencial
+    </div>
+
+    <div class="divlbl">Clasificación por β (Finlay-Wilkinson)</div>
+    <div id="p8-fw-cards"></div>
+    <div class="disc">Regresión F-W descriptiva · ≥3 sitios por material requeridos</div>
+  </div>
+</section>
+
+<!-- ══ P9 CONTEXTO MC ═════════════════════════════════════════════ -->
+<section id="sec-p9" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 9</div>
+    <div class="sec-title">Contexto Multicampaña</div>
+    <div class="sec-sub">2022/23 a 2025/26 · 8 materiales</div>
+    <div class="sec-badge" id="p9-badge">4 campañas · 223 obs</div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-grid">
+      <div class="kpi-card accent">
+        <div class="kpi-val">4</div>
+        <div class="kpi-lbl">campañas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">8</div>
+        <div class="kpi-lbl">materiales</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" id="p9-mcobs">223</div>
+        <div class="kpi-lbl">observaciones</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">2022</div>
+        <div class="kpi-lbl">inicio</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Materiales multicampaña</div>
+      <div id="p9-mats-list"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Media por campaña</div>
+      <div id="p9-camp-chart"></div>
+    </div>
+
+    <div class="disc">Dataset multicampaña: 05_multicampaña. Análisis descriptivo.</div>
+  </div>
+</section>
+
+<!-- ══ P10 ESTABILIDAD MC ═════════════════════════════════════════ -->
+<section id="sec-p10" class="sec">
+  <div class="sec-hdr">
+    <div class="sec-tag">Página 10</div>
+    <div class="sec-title">Estabilidad Multicampaña</div>
+    <div class="sec-sub">Finlay-Wilkinson sobre 4 campañas</div>
+    <div class="sec-badge" id="p10-badge">8 materiales</div>
+  </div>
+  <div class="fbar">
+    <div class="fbar-toggle" role="button" tabindex="0" data-target="fb10" onclick="toggleFbar('fb10')">
+      <span>Filtro material</span><span class="fbar-toggle-icon" id="fb10-icon">▼</span>
+    </div>
+    <div class="fbar-body" id="fb10">
+      <select id="f10-mat" data-render="renderP10" onchange="renderP10()">
+        <option value="">Todos los materiales</option>
+        <option>61MS01 STS</option><option>63MS01 CE</option>
+        <option>DM 50E25 SE</option><option>DM 60E62 SE</option>
+        <option>NEO 50S22 SE</option><option>NS 6223 CE</option>
+        <option>P 48A07 SE</option><option>P 51A25 SE</option>
+      </select>
+      <button class="fbar-reset" data-page="10" onclick="resetP10()">✕ Limpiar filtros</button>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="divlbl">Clasificación multicampaña β</div>
+    <div id="p10-fw-cards"></div>
+
+    <div class="disc">Regresión F-W multicampaña · ≥3 ambientes por material</div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── BOTTOM NAV ─────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <button class="nb-item active" id="nb-home" onclick="showSec('home')">
+    <div class="nb-icon">⌂</div><div>Inicio</div>
+  </button>
+  <button class="nb-item" id="nb-p3" onclick="showSec('p3')">
+    <div class="nb-icon">▦</div><div>Desempeño</div>
+  </button>
+  <button class="nb-item" id="nb-p5" onclick="showSec('p5')">
+    <div class="nb-icon">▤</div><div>Relativo</div>
+  </button>
+  <button class="nb-item" id="nb-p8" onclick="showSec('p8')">
+    <div class="nb-icon">◬</div><div>Adapt.</div>
+  </button>
+  <button class="nb-item" id="nb-p9" onclick="showSec('p9')">
+    <div class="nb-icon">☰</div><div>Multi.</div>
+  </button>
+</nav>
+
+<!-- ══ DATA ═══════════════════════════════════════════════════════ -->
+<script>
+// ── Dataset P3/P7/MC embedded (same as desktop) ──────────────────
+const _P3D = [{"s": "ARROYITO", "m": "P 60A01 SE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3909.6}, {"s": "ARROYITO", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 2920.0}, {"s": "ARROYITO", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3261.9}, {"s": "LAGUNA LARGA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3432.7}, {"s": "LAGUNA LARGA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3133.8}, {"s": "CAÑADA DE LUQUE", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3917.5}, {"s": "LA DORMIDA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3776.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3693.3}, {"s": "MI GRANJA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3344.8}, {"s": "LAGUNA LARGA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3624.2}, {"s": "ARROYITO", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3148.2}, {"s": "MI GRANJA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3314.2}, {"s": "LAGUNA LARGA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3399.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3838.7}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3564.5}, {"s": "MI GRANJA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 2974.7}, {"s": "ARROYITO", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3563.2}, {"s": "LAS ARRIAS", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3997.5}, {"s": "ARROYITO", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3561.5}, {"s": "MI GRANJA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3561.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3039.5}, {"s": "ARROYITO", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3908.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3572.4}, {"s": "LAGUNA LARGA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3615.9}, {"s": "MI GRANJA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3185.2}, {"s": "LAGUNA LARGA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3208.7}, {"s": "MONTE CRISTO", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3613.3}, {"s": "LAGUNA LARGA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3116.7}, {"s": "SACANTA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4179.2}, {"s": "CAÑADA DE LUQUE", "m": "DM 53I53 IPRO", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 4257.7}, {"s": "LA DORMIDA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4201.3}, {"s": "CAÑADA DE LUQUE", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4324.3}, {"s": "ARROYITO", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4093.6}, {"s": "CAÑADA DE LUQUE", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4147.6}, {"s": "ARROYITO", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3811.6}, {"s": "LAGUNA LARGA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3190.5}, {"s": "LA DORMIDA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3671.9}, {"s": "LA DORMIDA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4356.1}, {"s": "LAS ARRIAS", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4110.5}, {"s": "LA DORMIDA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3820.5}, {"s": "MI GRANJA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3517.1}, {"s": "LAGUNA LARGA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3770.6}, {"s": "LAS ARRIAS", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4242.1}, {"s": "ARROYITO", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3999.8}, {"s": "CAÑADA DE LUQUE", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3730.6}, {"s": "ARROYITO", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3337.2}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3936.4}, {"s": "ARROYITO", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3887.4}, {"s": "LAGUNA LARGA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3886.2}, {"s": "ARROYITO", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3746.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3592.2}, {"s": "ARROYITO", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3584.0}, {"s": "LA DORMIDA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4020.7}, {"s": "CAÑADA DE LUQUE", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3861.5}, {"s": "ARROYITO", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3811.8}, {"s": "MI GRANJA", "m": "BRV 56123 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3309.0}, {"s": "MI GRANJA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3344.8}, {"s": "LAS ARRIAS", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4858.2}, {"s": "MONTE CRISTO", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4309.0}, {"s": "LA DORMIDA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3631.7}, {"s": "MONTE CRISTO", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3984.7}, {"s": "LAGUNA LARGA", "m": "DM 50I17 STS", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3707.8}, {"s": "ARROYITO", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3671.2}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3847.2}, {"s": "LAGUNA LARGA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3564.7}, {"s": "ARROYITO", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3940.1}, {"s": "MONTE CRISTO", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3643.2}, {"s": "CAÑADA DE LUQUE", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4508.1}, {"s": "CAÑADA DE LUQUE", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4435.4}, {"s": "ARROYITO", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3824.6}, {"s": "SACANTA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4458.0}, {"s": "LA DORMIDA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4244.0}, {"s": "LA DORMIDA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4610.1}, {"s": "MONTE CRISTO", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3643.2}, {"s": "MI GRANJA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3254.3}, {"s": "MONTE CRISTO", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4429.9}, {"s": "LAS ARRIAS", "m": "DM 53I53 IPRO", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 4713.4}, {"s": "MI GRANJA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3521.1}, {"s": "MI GRANJA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3360.9}, {"s": "LAGUNA LARGA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3493.9}, {"s": "SACANTA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4059.7}, {"s": "MONTE CRISTO", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3761.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4609.7}, {"s": "EUFRASIO LOZA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4732.1}, {"s": "LAGUNA LARGA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3324.8}, {"s": "SACANTA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4853.5}, {"s": "SACANTA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4645.5}, {"s": "LAGUNA LARGA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3929.8}, {"s": "LA DORMIDA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3816.1}, {"s": "LAS ARRIAS", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4472.8}, {"s": "CAÑADA DE LUQUE", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3851.7}, {"s": "MONTE CRISTO", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4435.1}, {"s": "LAS ARRIAS", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4692.4}, {"s": "SACANTA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4112.4}, {"s": "EUFRASIO LOZA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4649.0}, {"s": "MONTE CRISTO", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4201.7}, {"s": "EUFRASIO LOZA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4893.3}, {"s": "LA DORMIDA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4048.2}, {"s": "MI GRANJA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3403.5}, {"s": "LAGUNA LARGA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3753.5}, {"s": "LAS ARRIAS", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4340.5}, {"s": "MI GRANJA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3337.9}, {"s": "MI GRANJA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3426.8}, {"s": "EUFRASIO LOZA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4484.2}, {"s": "LAS ARRIAS", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4804.4}, {"s": "SACANTA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4907.9}, {"s": "CAÑADA DE LUQUE", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4593.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3855.7}, {"s": "MONTE CRISTO", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3971.2}, {"s": "CAÑADA DE LUQUE", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4329.2}, {"s": "LAS ARRIAS", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4350.2}, {"s": "LA DORMIDA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4891.5}, {"s": "EUFRASIO LOZA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4653.8}, {"s": "SACANTA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4427.2}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3745.5}, {"s": "MI GRANJA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3541.3}, {"s": "EUFRASIO LOZA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5354.1}, {"s": "CAÑADA DE LUQUE", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4120.1}, {"s": "EUFRASIO LOZA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4391.0}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4292.1}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4816.9}, {"s": "LAGUNA LARGA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3624.2}, {"s": "LA DORMIDA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4795.1}, {"s": "MI GRANJA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3809.5}, {"s": "LA DORMIDA", "m": "DM 46I20 IPRO STS", "e": "DON MARIO", "c": "4 LARGO", "en": 0, "sts": 1, "ip": 1, "r": 5024.5}, {"s": "LAGUNA LARGA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4183.1}, {"s": "CAÑADA DE LUQUE", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4117.3}, {"s": "SACANTA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3814.6}, {"s": "MI GRANJA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3403.6}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 46I20 IPRO STS", "e": "DON MARIO", "c": "4 LARGO", "en": 0, "sts": 1, "ip": 1, "r": 4501.5}, {"s": "LAS ARRIAS", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4539.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4475.3}, {"s": "LAS ARRIAS", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5525.9}, {"s": "ARROYITO", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4093.5}, {"s": "EUFRASIO LOZA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4803.6}, {"s": "EUFRASIO LOZA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4964.4}, {"s": "EUFRASIO LOZA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4921.9}, {"s": "LAS ARRIAS", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4883.0}, {"s": "EUFRASIO LOZA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4744.5}, {"s": "MONTE CRISTO", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3989.3}, {"s": "EUFRASIO LOZA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4863.3}, {"s": "EUFRASIO LOZA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4766.7}, {"s": "SACANTA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4028.0}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4356.7}, {"s": "CAÑADA DE LUQUE", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4773.9}, {"s": "MI GRANJA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3375.4}, {"s": "MI GRANJA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3510.0}, {"s": "LAS ARRIAS", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4910.5}, {"s": "CAÑADA DE LUQUE", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4019.8}, {"s": "CAÑADA DE LUQUE", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4569.5}, {"s": "MONTE CRISTO", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4419.6}, {"s": "MONTE CRISTO", "m": "53MS02 STS", "e": "MACROSEED", "c": "5 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4339.3}, {"s": "LA DORMIDA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5007.0}, {"s": "LA DORMIDA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4119.4}, {"s": "MI GRANJA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3681.3}, {"s": "CAÑADA DE LUQUE", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4734.4}, {"s": "SACANTA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4601.0}, {"s": "SACANTA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4356.0}, {"s": "SACANTA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4401.6}, {"s": "SACANTA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4244.9}, {"s": "LA DORMIDA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5122.2}, {"s": "CAÑADA DE LUQUE", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4945.2}, {"s": "EUFRASIO LOZA", "m": "DM 60I62 IPRO", "e": "DON MARIO", "c": "6 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 5114.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4140.2}, {"s": "LAS ARRIAS", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 5284.9}, {"s": "LAS ARRIAS", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5061.3}, {"s": "SACANTA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4086.4}, {"s": "SACANTA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5132.0}, {"s": "LAGUNA LARGA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4305.3}, {"s": "LAS ARRIAS", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4916.0}, {"s": "LAS ARRIAS", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5225.9}, {"s": "ARROYITO", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4414.5}, {"s": "MONTE CRISTO", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4745.5}, {"s": "EUFRASIO LOZA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4787.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4658.5}, {"s": "CAÑADA DE LUQUE", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4492.7}, {"s": "SACANTA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5173.5}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4144.8}, {"s": "LAS ARRIAS", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5982.9}, {"s": "CAÑADA DE LUQUE", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4256.2}, {"s": "LA DORMIDA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4596.0}, {"s": "LA DORMIDA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4874.7}, {"s": "MONTE CRISTO", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4440.1}, {"s": "EUFRASIO LOZA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5132.3}, {"s": "MONTE CRISTO", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4391.2}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4569.7}, {"s": "LA DORMIDA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5134.0}, {"s": "MONTE CRISTO", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4546.0}, {"s": "EUFRASIO LOZA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5360.5}, {"s": "SACANTA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5315.7}, {"s": "MONTE CRISTO", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4629.7}, {"s": "LAS ARRIAS", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5235.5}, {"s": "EUFRASIO LOZA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5259.0}, {"s": "SACANTA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4367.9}, {"s": "MONTE CRISTO", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4789.9}, {"s": "MONTE CRISTO", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4789.9}, {"s": "EUFRASIO LOZA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 5044.9}, {"s": "EUFRASIO LOZA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 5236.7}];
+const _P2S = [{"id": "ARROYITO", "z": "4", "lat": -31.396463, "lon": -63.090275, "lat_disp": -31.396463, "lon_disp": -63.090275, "mean": 3724.4, "ie": -469.9, "n": 20, "fs": "17/12/2025", "ant": "MAIZ 1°", "ds": "0.350", "offset_note": false}, {"id": "CAPILLA DE LOS REMEDIOS", "z": "1", "lat": -31.466368, "lon": -64.003323, "lat_disp": -31.466368, "lon_disp": -64.003323, "mean": 4062.5, "ie": -131.8, "n": 20, "fs": "04/12/2025", "ant": "MAÍZ 1°", "ds": "0.525", "offset_note": false}, {"id": "CAÑADA DE LUQUE", "z": "5", "lat": -30.730942, "lon": -63.877037, "lat_disp": -30.730942, "lon_disp": -63.877037, "mean": 4299.3, "ie": 105.0, "n": 20, "fs": "18/12/2025", "ant": "ARVEJA", "ds": "0.525", "offset_note": false}, {"id": "EUFRASIO LOZA", "z": "5", "lat": -30.007632, "lon": -63.556002, "lat_disp": -30.007632, "lon_disp": -63.556002, "mean": 4907.9, "ie": 713.6, "n": 20, "fs": "16/12/2025", "ant": "MAÍZ 1°", "ds": "0.525", "offset_note": false}, {"id": "LA DORMIDA", "z": "5", "lat": -30.29709, "lon": -63.912806, "lat_disp": -30.29709, "lon_disp": -63.912806, "mean": 4388.1, "ie": 193.8, "n": 20, "fs": "05/12/2025", "ant": "MAÍZ 1°/CS CENTENO", "ds": "0.525", "offset_note": false}, {"id": "LAGUNA LARGA", "z": "2", "lat": -31.788533, "lon": -63.809991, "lat_disp": -31.788533, "lon_disp": -63.809991, "mean": 3592.9, "ie": -601.4, "n": 19, "fs": "03/12/2025", "ant": "MAÍZ 1°", "ds": "0.525", "offset_note": false}, {"id": "LAS ARRIAS", "z": "5", "lat": -30.277606, "lon": -63.57533, "lat_disp": -30.277606, "lon_disp": -63.57533, "mean": 4807.4, "ie": 613.1, "n": 20, "fs": "06/12/2025", "ant": "SORGO", "ds": "0.525", "offset_note": false}, {"id": "MI GRANJA", "z": "1", "lat": -31.348187, "lon": -64.011372, "lat_disp": -31.348187, "lon_disp": -64.011372, "mean": 3408.9, "ie": -785.4, "n": 20, "fs": "10/12/2025", "ant": "MAÍZ 1°", "ds": "0.525", "offset_note": false}, {"id": "MONTE CRISTO", "z": "1", "lat": -31.294506, "lon": -63.92474, "lat_disp": -31.294506, "lon_disp": -63.92474, "mean": 4253.7, "ie": 59.4, "n": 20, "fs": "02/12/2025", "ant": "MAÍZ 1°", "ds": "0.42", "offset_note": false}, {"id": "SACANTA", "z": "4", "lat": -31.639847, "lon": -63.040045, "lat_disp": -31.639847, "lon_disp": -63.040045, "mean": 4482.4, "ie": 288.1, "n": 19, "fs": "13/12/2025", "ant": "MAÍZ 1°", "ds": "0.420", "offset_note": false}];
+const _P7D = [{"s": "ARROYITO", "m": "P 60A01 SE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3909.6, "g": 2100.0, "p": 186.5}, {"s": "ARROYITO", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 2920.0, "g": 1407.5, "p": 184.6}, {"s": "ARROYITO", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3261.9, "g": 1723.9, "p": 189.2}, {"s": "LAGUNA LARGA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3432.7, "g": 1794.5, "p": 191.4}, {"s": "LAGUNA LARGA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3133.8, "g": 1853.6, "p": 169.1}, {"s": "CAÑADA DE LUQUE", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3917.5, "g": 1863.6, "p": 210.2}, {"s": "LA DORMIDA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3776.9, "g": 1876.7, "p": 201.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3693.3, "g": 1959.4, "p": 188.5}, {"s": "MI GRANJA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3344.8, "g": 1973.2, "p": 169.5}, {"s": "LAGUNA LARGA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3624.2, "g": 1975.4, "p": 183.5}, {"s": "ARROYITO", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3148.2, "g": 1985.7, "p": 158.5}, {"s": "MI GRANJA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3314.2, "g": 2004.6, "p": 165.3}, {"s": "LAGUNA LARGA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3399.4, "g": 2039.3, "p": 166.7}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3838.7, "g": 2048.2, "p": 187.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3564.5, "g": 2059.2, "p": 173.1}, {"s": "MI GRANJA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 2974.7, "g": 2061.6, "p": 144.3}, {"s": "ARROYITO", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3563.2, "g": 2064.5, "p": 172.6}, {"s": "LAS ARRIAS", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3997.5, "g": 2065.1, "p": 193.6}, {"s": "ARROYITO", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3561.5, "g": 2080.3, "p": 171.2}, {"s": "MI GRANJA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3561.9, "g": 2095.1, "p": 170.0}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3039.5, "g": 2100.1, "p": 144.7}, {"s": "ARROYITO", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3908.3, "g": 2111.0, "p": 185.1}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3572.4, "g": 2116.7, "p": 168.8}, {"s": "LAGUNA LARGA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3615.9, "g": 2119.3, "p": 170.6}, {"s": "MI GRANJA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3185.2, "g": 2125.1, "p": 149.9}, {"s": "LAGUNA LARGA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3208.7, "g": 2128.6, "p": 150.7}, {"s": "MONTE CRISTO", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3613.3, "g": 2135.9, "p": 169.2}, {"s": "LAGUNA LARGA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3116.7, "g": 2142.8, "p": 145.5}, {"s": "SACANTA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4179.2, "g": 2143.1, "p": 195.0}, {"s": "CAÑADA DE LUQUE", "m": "DM 53I53 IPRO", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 4257.7, "g": 2147.0, "p": 198.3}, {"s": "LA DORMIDA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4201.3, "g": 2154.3, "p": 195.2}, {"s": "CAÑADA DE LUQUE", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4324.3, "g": 2155.4, "p": 200.6}, {"s": "ARROYITO", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4093.6, "g": 2158.3, "p": 189.7}, {"s": "CAÑADA DE LUQUE", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4147.6, "g": 2161.3, "p": 191.9}, {"s": "ARROYITO", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3811.6, "g": 2164.7, "p": 176.1}, {"s": "LAGUNA LARGA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3190.5, "g": 2167.8, "p": 147.2}, {"s": "LA DORMIDA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3671.9, "g": 2169.9, "p": 169.2}, {"s": "LA DORMIDA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4356.1, "g": 2172.8, "p": 200.5}, {"s": "LAS ARRIAS", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4110.5, "g": 2173.3, "p": 189.1}, {"s": "LA DORMIDA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3820.5, "g": 2183.1, "p": 175.0}, {"s": "MI GRANJA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3517.1, "g": 2186.7, "p": 160.8}, {"s": "LAGUNA LARGA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3770.6, "g": 2189.9, "p": 172.2}, {"s": "LAS ARRIAS", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4242.1, "g": 2203.3, "p": 192.5}, {"s": "ARROYITO", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3999.8, "g": 2212.6, "p": 181.3}, {"s": "CAÑADA DE LUQUE", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3730.6, "g": 2214.7, "p": 168.4}, {"s": "ARROYITO", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3337.2, "g": 2216.4, "p": 150.6}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3936.4, "g": 2219.9, "p": 177.3}, {"s": "ARROYITO", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3887.4, "g": 2221.4, "p": 175.0}, {"s": "LAGUNA LARGA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3886.2, "g": 2247.8, "p": 172.9}, {"s": "ARROYITO", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3746.4, "g": 2251.1, "p": 166.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3592.2, "g": 2251.4, "p": 159.5}, {"s": "ARROYITO", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3584.0, "g": 2257.6, "p": 158.8}, {"s": "LA DORMIDA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4020.7, "g": 2260.9, "p": 177.8}, {"s": "CAÑADA DE LUQUE", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3861.5, "g": 2263.0, "p": 170.6}, {"s": "ARROYITO", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3811.8, "g": 2265.0, "p": 168.3}, {"s": "MI GRANJA", "m": "BRV 56123 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3309.0, "g": 2269.4, "p": 145.8}, {"s": "MI GRANJA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3344.8, "g": 2285.9, "p": 146.3}, {"s": "LAS ARRIAS", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4858.2, "g": 2292.3, "p": 211.7}, {"s": "MONTE CRISTO", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4309.0, "g": 2296.7, "p": 187.7}, {"s": "LA DORMIDA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3631.7, "g": 2300.5, "p": 157.9}, {"s": "MONTE CRISTO", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3984.7, "g": 2302.6, "p": 173.1}, {"s": "LAGUNA LARGA", "m": "DM 50I17 STS", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 3707.8, "g": 2306.3, "p": 160.8}, {"s": "ARROYITO", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3671.2, "g": 2307.7, "p": 159.1}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3847.2, "g": 2308.1, "p": 166.7}, {"s": "LAGUNA LARGA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3564.7, "g": 2314.0, "p": 154.2}, {"s": "ARROYITO", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3940.1, "g": 2323.4, "p": 169.6}, {"s": "MONTE CRISTO", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3643.2, "g": 2324.9, "p": 156.7}, {"s": "CAÑADA DE LUQUE", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4508.1, "g": 2327.6, "p": 193.7}, {"s": "CAÑADA DE LUQUE", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4435.4, "g": 2335.7, "p": 189.9}, {"s": "ARROYITO", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3824.6, "g": 2339.9, "p": 163.5}, {"s": "SACANTA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4458.0, "g": 2355.2, "p": 189.3}, {"s": "LA DORMIDA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4244.0, "g": 2357.8, "p": 180.0}, {"s": "LA DORMIDA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4610.1, "g": 2362.8, "p": 195.1}, {"s": "MONTE CRISTO", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3643.2, "g": 2363.4, "p": 154.2}, {"s": "MI GRANJA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3254.3, "g": 2381.8, "p": 136.6}, {"s": "MONTE CRISTO", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4429.9, "g": 2385.3, "p": 185.7}, {"s": "LAS ARRIAS", "m": "DM 53I53 IPRO", "e": "DON MARIO", "c": "5 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 4713.4, "g": 2385.4, "p": 197.6}, {"s": "MI GRANJA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3521.1, "g": 2389.6, "p": 147.4}, {"s": "MI GRANJA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3360.9, "g": 2397.9, "p": 140.2}, {"s": "LAGUNA LARGA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3493.9, "g": 2399.5, "p": 145.6}, {"s": "SACANTA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4059.7, "g": 2410.1, "p": 168.4}, {"s": "MONTE CRISTO", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3761.3, "g": 2410.4, "p": 156.0}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4609.7, "g": 2411.4, "p": 191.2}, {"s": "EUFRASIO LOZA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4732.1, "g": 2412.3, "p": 196.2}, {"s": "LAGUNA LARGA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3324.8, "g": 2414.0, "p": 137.7}, {"s": "SACANTA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4853.5, "g": 2426.0, "p": 200.1}, {"s": "SACANTA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4645.5, "g": 2426.1, "p": 192.3}, {"s": "LAGUNA LARGA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3929.8, "g": 2428.0, "p": 161.8}, {"s": "LA DORMIDA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3816.1, "g": 2433.6, "p": 156.8}, {"s": "LAS ARRIAS", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4472.8, "g": 2436.0, "p": 183.6}, {"s": "CAÑADA DE LUQUE", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3851.7, "g": 2438.1, "p": 158.0}, {"s": "MONTE CRISTO", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4435.1, "g": 2449.0, "p": 181.1}, {"s": "LAS ARRIAS", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4692.4, "g": 2455.3, "p": 191.1}, {"s": "SACANTA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4112.4, "g": 2471.1, "p": 166.4}, {"s": "EUFRASIO LOZA", "m": "61MS01 STS", "e": "MACROSEED", "c": "6 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4649.0, "g": 2472.4, "p": 188.4}, {"s": "MONTE CRISTO", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4201.7, "g": 2476.6, "p": 169.7}, {"s": "EUFRASIO LOZA", "m": "NS 6223 CE", "e": "NIDERA", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4893.3, "g": 2483.5, "p": 197.0}, {"s": "LA DORMIDA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4048.2, "g": 2484.2, "p": 163.0}, {"s": "MI GRANJA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3403.5, "g": 2498.0, "p": 136.2}, {"s": "LAGUNA LARGA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3753.5, "g": 2501.4, "p": 150.1}, {"s": "LAS ARRIAS", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4340.5, "g": 2523.3, "p": 172.0}, {"s": "MI GRANJA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3337.9, "g": 2523.4, "p": 132.4}, {"s": "MI GRANJA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3426.8, "g": 2527.5, "p": 135.6}, {"s": "EUFRASIO LOZA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4484.2, "g": 2532.4, "p": 177.1}, {"s": "LAS ARRIAS", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4804.4, "g": 2534.9, "p": 189.5}, {"s": "SACANTA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4907.9, "g": 2540.0, "p": 193.2}, {"s": "CAÑADA DE LUQUE", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4593.9, "g": 2540.1, "p": 180.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3855.7, "g": 2547.2, "p": 151.4}, {"s": "MONTE CRISTO", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3971.2, "g": 2548.6, "p": 155.8}, {"s": "CAÑADA DE LUQUE", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4329.2, "g": 2549.9, "p": 169.8}, {"s": "LAS ARRIAS", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4350.2, "g": 2550.4, "p": 170.6}, {"s": "LA DORMIDA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4891.5, "g": 2553.7, "p": 191.5}, {"s": "EUFRASIO LOZA", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4653.8, "g": 2561.2, "p": 181.7}, {"s": "SACANTA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4427.2, "g": 2568.0, "p": 172.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3745.5, "g": 2578.4, "p": 145.3}, {"s": "MI GRANJA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 3541.3, "g": 2583.4, "p": 137.1}, {"s": "EUFRASIO LOZA", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5354.1, "g": 2593.5, "p": 206.4}, {"s": "CAÑADA DE LUQUE", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4120.1, "g": 2593.9, "p": 158.8}, {"s": "EUFRASIO LOZA", "m": "BRV 5925 CE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4391.0, "g": 2599.9, "p": 168.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4292.1, "g": 2605.9, "p": 164.7}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4816.9, "g": 2605.9, "p": 184.8}, {"s": "LAGUNA LARGA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3624.2, "g": 2610.0, "p": 138.9}, {"s": "LA DORMIDA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4795.1, "g": 2610.4, "p": 183.7}, {"s": "MI GRANJA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 3809.5, "g": 2615.2, "p": 145.7}, {"s": "LA DORMIDA", "m": "DM 46I20 IPRO STS", "e": "DON MARIO", "c": "4 LARGO", "en": 0, "sts": 1, "ip": 1, "r": 5024.5, "g": 2615.4, "p": 192.1}, {"s": "LAGUNA LARGA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4183.1, "g": 2621.6, "p": 159.6}, {"s": "CAÑADA DE LUQUE", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4117.3, "g": 2623.5, "p": 156.9}, {"s": "SACANTA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3814.6, "g": 2629.9, "p": 145.0}, {"s": "MI GRANJA", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3403.6, "g": 2645.3, "p": 128.7}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "DM 46I20 IPRO STS", "e": "DON MARIO", "c": "4 LARGO", "en": 0, "sts": 1, "ip": 1, "r": 4501.5, "g": 2647.7, "p": 170.0}, {"s": "LAS ARRIAS", "m": "BRV 6424 SCE", "e": "BREVANT", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4539.3, "g": 2648.5, "p": 171.4}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4475.3, "g": 2648.8, "p": 169.0}, {"s": "LAS ARRIAS", "m": "NEO 50S22 SE", "e": "NEOGEN", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5525.9, "g": 2654.1, "p": 208.2}, {"s": "ARROYITO", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4093.5, "g": 2655.6, "p": 154.1}, {"s": "EUFRASIO LOZA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4803.6, "g": 2660.9, "p": 180.5}, {"s": "EUFRASIO LOZA", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4964.4, "g": 2661.5, "p": 186.5}, {"s": "EUFRASIO LOZA", "m": "NORD 5224 SE", "e": "NORD", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4921.9, "g": 2694.4, "p": 182.7}, {"s": "LAS ARRIAS", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4883.0, "g": 2703.6, "p": 180.6}, {"s": "EUFRASIO LOZA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4744.5, "g": 2703.7, "p": 175.5}, {"s": "MONTE CRISTO", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3989.3, "g": 2704.7, "p": 147.5}, {"s": "EUFRASIO LOZA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4863.3, "g": 2705.4, "p": 179.8}, {"s": "EUFRASIO LOZA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4766.7, "g": 2705.9, "p": 177.5}, {"s": "SACANTA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4028.0, "g": 2711.8, "p": 148.5}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4356.7, "g": 2711.9, "p": 160.6}, {"s": "CAÑADA DE LUQUE", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4773.9, "g": 2717.2, "p": 175.7}, {"s": "MI GRANJA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 3375.4, "g": 2735.8, "p": 123.4}, {"s": "MI GRANJA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3510.0, "g": 2738.2, "p": 128.2}, {"s": "LAS ARRIAS", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4910.5, "g": 2742.0, "p": 179.1}, {"s": "CAÑADA DE LUQUE", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4019.8, "g": 2743.9, "p": 146.5}, {"s": "CAÑADA DE LUQUE", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4569.5, "g": 2750.7, "p": 166.1}, {"s": "MONTE CRISTO", "m": "DM 50E25 SE", "e": "DON MARIO", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4419.6, "g": 2762.5, "p": 160.0}, {"s": "MONTE CRISTO", "m": "53MS02 STS", "e": "MACROSEED", "c": "5 CORTO", "en": 0, "sts": 1, "ip": 0, "r": 4339.3, "g": 2768.2, "p": 156.8}, {"s": "LA DORMIDA", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5007.0, "g": 2768.9, "p": 180.8}, {"s": "LA DORMIDA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4119.4, "g": 2770.4, "p": 148.7}, {"s": "MI GRANJA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 3681.3, "g": 2774.3, "p": 132.7}, {"s": "CAÑADA DE LUQUE", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4734.4, "g": 2779.5, "p": 170.3}, {"s": "SACANTA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4601.0, "g": 2780.2, "p": 165.5}, {"s": "SACANTA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4356.0, "g": 2789.6, "p": 156.2}, {"s": "SACANTA", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4401.6, "g": 2793.5, "p": 157.6}, {"s": "SACANTA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4244.9, "g": 2794.2, "p": 151.9}, {"s": "LA DORMIDA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5122.2, "g": 2794.4, "p": 183.3}, {"s": "CAÑADA DE LUQUE", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4945.2, "g": 2823.3, "p": 175.2}, {"s": "EUFRASIO LOZA", "m": "DM 60I62 IPRO", "e": "DON MARIO", "c": "6 CORTO", "en": 0, "sts": 0, "ip": 1, "r": 5114.3, "g": 2824.1, "p": 181.1}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4140.2, "g": 2829.7, "p": 146.3}, {"s": "LAS ARRIAS", "m": "NK 62X26 CE STS", "e": "NK", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 5284.9, "g": 2839.7, "p": 186.1}, {"s": "LAS ARRIAS", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5061.3, "g": 2851.8, "p": 177.5}, {"s": "SACANTA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4086.4, "g": 2852.8, "p": 143.2}, {"s": "SACANTA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5132.0, "g": 2853.8, "p": 179.8}, {"s": "LAGUNA LARGA", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4305.3, "g": 2859.7, "p": 150.6}, {"s": "LAS ARRIAS", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4916.0, "g": 2865.4, "p": 171.6}, {"s": "LAS ARRIAS", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5225.9, "g": 2881.4, "p": 181.4}, {"s": "ARROYITO", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4414.5, "g": 2896.1, "p": 152.4}, {"s": "MONTE CRISTO", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4745.5, "g": 2898.9, "p": 163.7}, {"s": "EUFRASIO LOZA", "m": "63MS01 CE", "e": "MACROSEED", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 4787.9, "g": 2923.9, "p": 163.8}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4658.5, "g": 2925.8, "p": 159.2}, {"s": "CAÑADA DE LUQUE", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4492.7, "g": 2927.5, "p": 153.5}, {"s": "SACANTA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5173.5, "g": 2941.6, "p": 175.9}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4144.8, "g": 2956.4, "p": 140.2}, {"s": "LAS ARRIAS", "m": "NORD 4824 SE", "e": "NORD", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5982.9, "g": 2971.9, "p": 201.3}, {"s": "CAÑADA DE LUQUE", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4256.2, "g": 2976.0, "p": 143.0}, {"s": "LA DORMIDA", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4596.0, "g": 2979.3, "p": 154.3}, {"s": "LA DORMIDA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4874.7, "g": 2979.5, "p": 163.6}, {"s": "MONTE CRISTO", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4440.1, "g": 2982.6, "p": 148.9}, {"s": "EUFRASIO LOZA", "m": "DM 60E62 SE", "e": "DON MARIO", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5132.3, "g": 2985.4, "p": 171.9}, {"s": "MONTE CRISTO", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4391.2, "g": 3024.0, "p": 145.3}, {"s": "CAPILLA DE LOS REMEDIOS", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4569.7, "g": 3024.3, "p": 151.1}, {"s": "LA DORMIDA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5134.0, "g": 3042.8, "p": 168.7}, {"s": "MONTE CRISTO", "m": "BRV 4524 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4546.0, "g": 3045.4, "p": 149.3}, {"s": "EUFRASIO LOZA", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5360.5, "g": 3078.1, "p": 174.2}, {"s": "SACANTA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5315.7, "g": 3094.7, "p": 171.8}, {"s": "MONTE CRISTO", "m": "BRV 4824 SE", "e": "BREVANT", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4629.7, "g": 3129.5, "p": 147.9}, {"s": "LAS ARRIAS", "m": "P 48A07 SE", "e": "PIONEER", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 5235.5, "g": 3142.6, "p": 166.6}, {"s": "EUFRASIO LOZA", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 5259.0, "g": 3156.8, "p": 166.6}, {"s": "SACANTA", "m": "NEO 64S25 SCE", "e": "NEOGEN", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 4367.9, "g": 3197.5, "p": 136.6}, {"s": "MONTE CRISTO", "m": "NS 4924 E STS", "e": "NIDERA", "c": "4 LARGO", "en": 1, "sts": 1, "ip": 0, "r": 4789.9, "g": 3248.0, "p": 147.5}, {"s": "MONTE CRISTO", "m": "P 51A25 SE", "e": "PIONEER", "c": "5 CORTO", "en": 1, "sts": 1, "ip": 0, "r": 4789.9, "g": 3266.2, "p": 146.7}, {"s": "EUFRASIO LOZA", "m": "P 64A25 CE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 0, "ip": 1, "r": 5044.9, "g": 3287.3, "p": 153.5}, {"s": "EUFRASIO LOZA", "m": "P 61A25 SCE", "e": "PIONEER", "c": "6 CORTO", "en": 1, "sts": 1, "ip": 1, "r": 5236.7, "g": 3396.1, "p": 154.2}];
+const _P7MO = ["DM 60I62 IPRO", "DM 46I20 IPRO STS", "P 51A25 SE", "NORD 4824 SE", "BRV 4824 SE", "DM 53I53 IPRO", "NS 4924 E STS", "NEO 50S22 SE", "BRV 4524 SE", "53MS02 STS", "P 48A07 SE", "P 61A25 SCE", "DM 50E25 SE", "NK 62X26 CE STS", "61MS01 STS", "DM 60E62 SE", "NEO 64S25 SCE", "NORD 5224 SE", "P 64A25 CE", "63MS01 CE", "P 60A01 SE", "NS 6223 CE", "BRV 5925 CE", "BRV 6424 SCE", "DM 50I17 STS", "BRV 56123 SCE"]
+const _P7CC = {'6 CORTO':'#1B4F8A','5 CORTO':'#2D7A3A','4 LARGO':'#C06B10'};
+const _P7F  = 'Arial,Helvetica,sans-serif';
+
+// ── Multicampaña data ─────────────────────────────────────────────
+var _MC     = [{"camp": "2023-24", "sitio": "LAGUNA LARGA", "mat": "P 48A07 SE", "r": 1611.0}, {"camp": "2023-24", "sitio": "MONTE CRISTO", "mat": "P 48A07 SE", "r": 2526.0}, {"camp": "2023-24", "sitio": "LAS ARRIAS", "mat": "P 48A07 SE", "r": 2610.0}, {"camp": "2023-24", "sitio": "MI GRANJA", "mat": "P 48A07 SE", "r": 2940.0}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "P 48A07 SE", "r": 3229.8}, {"camp": "2023-24", "sitio": "CANDELARIA SUD", "mat": "P 48A07 SE", "r": 3257.0}, {"camp": "2023-24", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 48A07 SE", "r": 3262.0}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "P 48A07 SE", "r": 3310.8}, {"camp": "2023-24", "sitio": "EUFRASIO LOZA", "mat": "P 48A07 SE", "r": 3362.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "P 48A07 SE", "r": 3372.3}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "P 48A07 SE", "r": 3384.1}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "P 48A07 SE", "r": 3399.7}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "P 48A07 SE", "r": 3421.3}, {"camp": "2023-24", "sitio": "LA DORMIDA", "mat": "P 48A07 SE", "r": 3462.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "P 48A07 SE", "r": 3541.0}, {"camp": "2023-24", "sitio": "SACANTA", "mat": "P 48A07 SE", "r": 3735.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "P 48A07 SE", "r": 3780.7}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "P 48A07 SE", "r": 4020.0}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 48A07 SE", "r": 4139.9}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "P 48A07 SE", "r": 4324.2}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "P 48A07 SE", "r": 4373.5}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 48A07 SE", "r": 4376.3}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "P 48A07 SE", "r": 4414.4}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "P 48A07 SE", "r": 4435.1}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "P 48A07 SE", "r": 4485.5}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "P 48A07 SE", "r": 4529.7}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "P 48A07 SE", "r": 4548.0}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 48A07 SE", "r": 4553.8}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "P 48A07 SE", "r": 4620.3}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "P 48A07 SE", "r": 4622.4}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "P 48A07 SE", "r": 4650.1}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "P 48A07 SE", "r": 4650.8}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "P 48A07 SE", "r": 4684.8}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "P 48A07 SE", "r": 4754.5}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "P 48A07 SE", "r": 4793.0}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "P 48A07 SE", "r": 4886.7}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "P 48A07 SE", "r": 5061.3}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "P 48A07 SE", "r": 5273.1}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "P 48A07 SE", "r": 5372.2}, {"camp": "2024-25", "sitio": "LA DORMIDA", "mat": "DM 50E25 SE", "r": 1655.3}, {"camp": "2024-25", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "DM 50E25 SE", "r": 2262.4}, {"camp": "2024-25", "sitio": "LAS ARRIAS", "mat": "DM 50E25 SE", "r": 3152.6}, {"camp": "2024-25", "sitio": "LAGUNA LARGA", "mat": "DM 50E25 SE", "r": 3161.9}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "DM 50E25 SE", "r": 3261.9}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "DM 50E25 SE", "r": 3521.1}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "DM 50E25 SE", "r": 3615.9}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "DM 50E25 SE", "r": 3936.4}, {"camp": "2024-25", "sitio": "ARROYITO", "mat": "DM 50E25 SE", "r": 3986.4}, {"camp": "2024-25", "sitio": "SACANTA", "mat": "DM 50E25 SE", "r": 4208.6}, {"camp": "2024-25", "sitio": "LAS BANDURRIAS", "mat": "DM 50E25 SE", "r": 4410.7}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "DM 50E25 SE", "r": 4419.6}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "DM 50E25 SE", "r": 4435.4}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "DM 50E25 SE", "r": 4458.0}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "DM 50E25 SE", "r": 4610.1}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "DM 50E25 SE", "r": 4653.8}, {"camp": "2024-25", "sitio": "EUFRASIO LOZA", "mat": "DM 50E25 SE", "r": 4790.4}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "DM 50E25 SE", "r": 4804.4}, {"camp": "2024-25", "sitio": "MONTE CRISTO", "mat": "DM 50E25 SE", "r": 4935.4}, {"camp": "2022-23", "sitio": "SEBASTIAN ELCANO", "mat": "NEO 50S22 SE", "r": 812.0}, {"camp": "2022-23", "sitio": "CANDELARIA SUD", "mat": "NEO 50S22 SE", "r": 971.0}, {"camp": "2022-23", "sitio": "LA DORMIDA", "mat": "NEO 50S22 SE", "r": 1061.0}, {"camp": "2022-23", "sitio": "EUFRASIO LOZA", "mat": "NEO 50S22 SE", "r": 1244.0}, {"camp": "2023-24", "sitio": "LAGUNA LARGA", "mat": "NEO 50S22 SE", "r": 1613.0}, {"camp": "2022-23", "sitio": "SACANTA", "mat": "NEO 50S22 SE", "r": 1859.0}, {"camp": "2022-23", "sitio": "MONTE CRISTO", "mat": "NEO 50S22 SE", "r": 1908.0}, {"camp": "2022-23", "sitio": "EL TIO", "mat": "NEO 50S22 SE", "r": 2195.0}, {"camp": "2022-23", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "NEO 50S22 SE", "r": 2263.0}, {"camp": "2022-23", "sitio": "LAGUNA LARGA", "mat": "NEO 50S22 SE", "r": 2479.0}, {"camp": "2023-24", "sitio": "MONTE CRISTO", "mat": "NEO 50S22 SE", "r": 2630.0}, {"camp": "2023-24", "sitio": "MI GRANJA", "mat": "NEO 50S22 SE", "r": 2779.0}, {"camp": "2023-24", "sitio": "CANDELARIA SUD", "mat": "NEO 50S22 SE", "r": 2974.0}, {"camp": "2023-24", "sitio": "LAS ARRIAS", "mat": "NEO 50S22 SE", "r": 3011.0}, {"camp": "2022-23", "sitio": "SINSACATE", "mat": "NEO 50S22 SE", "r": 3269.0}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "NEO 50S22 SE", "r": 3517.1}, {"camp": "2023-24", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "NEO 50S22 SE", "r": 3568.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "NEO 50S22 SE", "r": 3624.2}, {"camp": "2023-24", "sitio": "EUFRASIO LOZA", "mat": "NEO 50S22 SE", "r": 3704.0}, {"camp": "2023-24", "sitio": "LA DORMIDA", "mat": "NEO 50S22 SE", "r": 3862.0}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "NEO 50S22 SE", "r": 3917.5}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "NEO 50S22 SE", "r": 4093.6}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "NEO 50S22 SE", "r": 4429.9}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "NEO 50S22 SE", "r": 4609.7}, {"camp": "2023-24", "sitio": "SACANTA", "mat": "NEO 50S22 SE", "r": 4878.0}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "NEO 50S22 SE", "r": 4891.5}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "NEO 50S22 SE", "r": 4952.3}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "NEO 50S22 SE", "r": 5354.1}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "NEO 50S22 SE", "r": 5525.9}, {"camp": "2024-25", "sitio": "LA DORMIDA", "mat": "P 51A25 SE", "r": 2063.5}, {"camp": "2024-25", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 51A25 SE", "r": 2259.9}, {"camp": "2024-25", "sitio": "LAS ARRIAS", "mat": "P 51A25 SE", "r": 2814.8}, {"camp": "2024-25", "sitio": "MI GRANJA", "mat": "P 51A25 SE", "r": 3533.4}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "P 51A25 SE", "r": 3541.3}, {"camp": "2024-25", "sitio": "LAGUNA LARGA", "mat": "P 51A25 SE", "r": 3703.6}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "P 51A25 SE", "r": 3940.1}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "P 51A25 SE", "r": 4183.1}, {"camp": "2024-25", "sitio": "ARROYITO", "mat": "P 51A25 SE", "r": 4321.4}, {"camp": "2024-25", "sitio": "LAS BANDURRIAS", "mat": "P 51A25 SE", "r": 4563.3}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "P 51A25 SE", "r": 4569.7}, {"camp": "2024-25", "sitio": "SACANTA", "mat": "P 51A25 SE", "r": 4640.4}, {"camp": "2024-25", "sitio": "EUFRASIO LOZA", "mat": "P 51A25 SE", "r": 4720.5}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "P 51A25 SE", "r": 4789.9}, {"camp": "2024-25", "sitio": "MONTE CRISTO", "mat": "P 51A25 SE", "r": 4794.2}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "P 51A25 SE", "r": 4945.2}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "P 51A25 SE", "r": 5061.3}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "P 51A25 SE", "r": 5134.0}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "P 51A25 SE", "r": 5259.0}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "P 51A25 SE", "r": 5315.7}, {"camp": "2022-23", "sitio": "SEBASTIAN ELCANO", "mat": "61MS01 STS", "r": 312.0}, {"camp": "2022-23", "sitio": "EUFRASIO LOZA", "mat": "61MS01 STS", "r": 969.0}, {"camp": "2022-23", "sitio": "SACANTA", "mat": "61MS01 STS", "r": 1169.0}, {"camp": "2022-23", "sitio": "LA DORMIDA", "mat": "61MS01 STS", "r": 1210.0}, {"camp": "2022-23", "sitio": "CANDELARIA SUD", "mat": "61MS01 STS", "r": 1296.0}, {"camp": "2022-23", "sitio": "EL TIO", "mat": "61MS01 STS", "r": 1408.0}, {"camp": "2022-23", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "61MS01 STS", "r": 1929.0}, {"camp": "2022-23", "sitio": "MONTE CRISTO", "mat": "61MS01 STS", "r": 2105.0}, {"camp": "2022-23", "sitio": "LAGUNA LARGA", "mat": "61MS01 STS", "r": 2186.0}, {"camp": "2022-23", "sitio": "SINSACATE", "mat": "61MS01 STS", "r": 3045.0}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "61MS01 STS", "r": 3399.6}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "61MS01 STS", "r": 3411.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "61MS01 STS", "r": 3454.4}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "61MS01 STS", "r": 3561.5}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "61MS01 STS", "r": 3576.3}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "61MS01 STS", "r": 3621.2}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "61MS01 STS", "r": 3664.7}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "61MS01 STS", "r": 3749.7}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "61MS01 STS", "r": 3753.8}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "61MS01 STS", "r": 3928.8}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "61MS01 STS", "r": 4011.5}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "61MS01 STS", "r": 4183.5}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "61MS01 STS", "r": 4217.2}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "61MS01 STS", "r": 4243.6}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "61MS01 STS", "r": 4246.8}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "61MS01 STS", "r": 4254.4}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "61MS01 STS", "r": 4254.6}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "61MS01 STS", "r": 4267.1}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "61MS01 STS", "r": 4348.8}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "61MS01 STS", "r": 4432.9}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "61MS01 STS", "r": 4442.8}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "61MS01 STS", "r": 4455.2}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "61MS01 STS", "r": 4524.5}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "61MS01 STS", "r": 4561.0}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "61MS01 STS", "r": 4616.6}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "61MS01 STS", "r": 4851.1}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "61MS01 STS", "r": 4887.5}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "61MS01 STS", "r": 4921.6}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "61MS01 STS", "r": 5220.0}, {"camp": "2022-23", "sitio": "SEBASTIAN ELCANO", "mat": "63MS01 CE", "r": 211.0}, {"camp": "2022-23", "sitio": "EUFRASIO LOZA", "mat": "63MS01 CE", "r": 857.0}, {"camp": "2022-23", "sitio": "CANDELARIA SUD", "mat": "63MS01 CE", "r": 1189.0}, {"camp": "2022-23", "sitio": "SACANTA", "mat": "63MS01 CE", "r": 1357.0}, {"camp": "2022-23", "sitio": "LA DORMIDA", "mat": "63MS01 CE", "r": 1548.0}, {"camp": "2023-24", "sitio": "LAGUNA LARGA", "mat": "63MS01 CE", "r": 1665.0}, {"camp": "2022-23", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "63MS01 CE", "r": 1888.0}, {"camp": "2022-23", "sitio": "MONTE CRISTO", "mat": "63MS01 CE", "r": 2095.0}, {"camp": "2022-23", "sitio": "LAGUNA LARGA", "mat": "63MS01 CE", "r": 2136.0}, {"camp": "2022-23", "sitio": "EL TIO", "mat": "63MS01 CE", "r": 2505.0}, {"camp": "2023-24", "sitio": "EUFRASIO LOZA", "mat": "63MS01 CE", "r": 2593.0}, {"camp": "2024-25", "sitio": "LA DORMIDA", "mat": "63MS01 CE", "r": 2632.8}, {"camp": "2023-24", "sitio": "MONTE CRISTO", "mat": "63MS01 CE", "r": 2646.0}, {"camp": "2023-24", "sitio": "MI GRANJA", "mat": "63MS01 CE", "r": 2817.0}, {"camp": "2023-24", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "63MS01 CE", "r": 2827.0}, {"camp": "2024-25", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "63MS01 CE", "r": 2897.3}, {"camp": "2023-24", "sitio": "LAS ARRIAS", "mat": "63MS01 CE", "r": 2955.0}, {"camp": "2023-24", "sitio": "LA DORMIDA", "mat": "63MS01 CE", "r": 3027.0}, {"camp": "2024-25", "sitio": "LAS ARRIAS", "mat": "63MS01 CE", "r": 3054.1}, {"camp": "2024-25", "sitio": "MI GRANJA", "mat": "63MS01 CE", "r": 3178.0}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "63MS01 CE", "r": 3190.5}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "63MS01 CE", "r": 3254.3}, {"camp": "2024-25", "sitio": "LAGUNA LARGA", "mat": "63MS01 CE", "r": 3284.7}, {"camp": "2022-23", "sitio": "SINSACATE", "mat": "63MS01 CE", "r": 3356.0}, {"camp": "2023-24", "sitio": "CANDELARIA SUD", "mat": "63MS01 CE", "r": 3400.0}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "63MS01 CE", "r": 3592.2}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "63MS01 CE", "r": 3671.9}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "63MS01 CE", "r": 3761.3}, {"camp": "2023-24", "sitio": "SACANTA", "mat": "63MS01 CE", "r": 3847.0}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "63MS01 CE", "r": 3851.7}, {"camp": "2024-25", "sitio": "ARROYITO", "mat": "63MS01 CE", "r": 3909.4}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "63MS01 CE", "r": 4244.9}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "63MS01 CE", "r": 4414.5}, {"camp": "2024-25", "sitio": "LAS BANDURRIAS", "mat": "63MS01 CE", "r": 4499.5}, {"camp": "2024-25", "sitio": "MONTE CRISTO", "mat": "63MS01 CE", "r": 4512.2}, {"camp": "2024-25", "sitio": "SACANTA", "mat": "63MS01 CE", "r": 4678.8}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "63MS01 CE", "r": 4692.4}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "63MS01 CE", "r": 4787.9}, {"camp": "2024-25", "sitio": "EUFRASIO LOZA", "mat": "63MS01 CE", "r": 4789.3}, {"camp": "2024-25", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "DM 60E62 SE", "r": 3142.3}, {"camp": "2025-26", "sitio": "LAGUNA LARGA", "mat": "DM 60E62 SE", "r": 3208.7}, {"camp": "2024-25", "sitio": "LAS ARRIAS", "mat": "DM 60E62 SE", "r": 3373.8}, {"camp": "2024-25", "sitio": "MI GRANJA", "mat": "DM 60E62 SE", "r": 3387.8}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "DM 60E62 SE", "r": 3426.8}, {"camp": "2024-25", "sitio": "LAGUNA LARGA", "mat": "DM 60E62 SE", "r": 3558.4}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "DM 60E62 SE", "r": 3824.6}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "DM 60E62 SE", "r": 3855.7}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "DM 60E62 SE", "r": 3971.2}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "DM 60E62 SE", "r": 4020.7}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "DM 60E62 SE", "r": 4117.3}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "DM 60E62 SE", "r": 4356.0}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "DM 60E62 SE", "r": 4472.8}, {"camp": "2024-25", "sitio": "LAS BANDURRIAS", "mat": "DM 60E62 SE", "r": 4499.5}, {"camp": "2024-25", "sitio": "ARROYITO", "mat": "DM 60E62 SE", "r": 4647.5}, {"camp": "2024-25", "sitio": "MONTE CRISTO", "mat": "DM 60E62 SE", "r": 5076.2}, {"camp": "2024-25", "sitio": "SACANTA", "mat": "DM 60E62 SE", "r": 5098.2}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "DM 60E62 SE", "r": 5132.3}, {"camp": "2024-25", "sitio": "EUFRASIO LOZA", "mat": "DM 60E62 SE", "r": 5212.9}, {"camp": "2024-25", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "NS 6223 CE", "r": 2765.2}, {"camp": "2025-26", "sitio": "MI GRANJA", "mat": "NS 6223 CE", "r": 2974.7}, {"camp": "2024-25", "sitio": "LA DORMIDA", "mat": "NS 6223 CE", "r": 2983.5}, {"camp": "2024-25", "sitio": "LAGUNA LARGA", "mat": "NS 6223 CE", "r": 3144.3}, {"camp": "2024-25", "sitio": "MI GRANJA", "mat": "NS 6223 CE", "r": 3227.6}, {"camp": "2024-25", "sitio": "LAS ARRIAS", "mat": "NS 6223 CE", "r": 3257.6}, {"camp": "2025-26", "sitio": "CAPILLA DE LOS REMEDIOS", "mat": "NS 6223 CE", "r": 3564.5}, {"camp": "2025-26", "sitio": "MONTE CRISTO", "mat": "NS 6223 CE", "r": 3613.3}, {"camp": "2025-26", "sitio": "LA DORMIDA", "mat": "NS 6223 CE", "r": 3776.9}, {"camp": "2025-26", "sitio": "CAÑADA DE LUQUE", "mat": "NS 6223 CE", "r": 3861.5}, {"camp": "2025-26", "sitio": "ARROYITO", "mat": "NS 6223 CE", "r": 3887.4}, {"camp": "2025-26", "sitio": "LAS ARRIAS", "mat": "NS 6223 CE", "r": 4110.5}, {"camp": "2025-26", "sitio": "SACANTA", "mat": "NS 6223 CE", "r": 4112.4}, {"camp": "2024-25", "sitio": "ARROYITO", "mat": "NS 6223 CE", "r": 4149.1}, {"camp": "2024-25", "sitio": "LAS BANDURRIAS", "mat": "NS 6223 CE", "r": 4483.3}, {"camp": "2024-25", "sitio": "EUFRASIO LOZA", "mat": "NS 6223 CE", "r": 4508.1}, {"camp": "2024-25", "sitio": "MONTE CRISTO", "mat": "NS 6223 CE", "r": 4723.7}, {"camp": "2025-26", "sitio": "EUFRASIO LOZA", "mat": "NS 6223 CE", "r": 4893.3}, {"camp": "2024-25", "sitio": "SACANTA", "mat": "NS 6223 CE", "r": 5092.2}];
+var _MC_EMP = {"P 60A01 SE": "PIONEER", "NORD 5224 SE": "NORD", "DM 50E25 SE": "DON MARIO", "61MS01 STS": "MACROSEED", "BRV 5925 CE": "BREVANT", "NEO 50S22 SE": "NEOGEN", "NS 6223 CE": "NIDERA", "BRV 6424 SCE": "BREVANT", "NORD 4824 SE": "NORD", "NK 62X26 CE STS": "NK", "BRV 4824 SE": "BREVANT", "DM 60E62 SE": "DON MARIO", "DM 53I53 IPRO": "DON MARIO", "63MS01 CE": "MACROSEED", "NEO 64S25 SCE": "NEOGEN", "NS 4924 E STS": "NIDERA", "P 48A07 SE": "PIONEER", "BRV 4524 SE": "BREVANT", "BRV 56123 SCE": "BREVANT", "P 61A25 SCE": "PIONEER", "DM 50I17 STS": "DON MARIO", "P 64A25 CE": "PIONEER", "P 51A25 SE": "PIONEER", "DM 46I20 IPRO STS": "DON MARIO", "53MS02 STS": "MACROSEED", "DM 60I62 IPRO": "DON MARIO"};
+var _MC_CAMPS = ["2022-23","2023-24","2024-25","2025-26"];
+var _MC_MATS  = ["61MS01 STS", "63MS01 CE", "DM 50E25 SE", "DM 60E62 SE", "NEO 50S22 SE", "NS 6223 CE", "P 48A07 SE", "P 51A25 SE"];
+
+// ── Site/zone maps ────────────────────────────────────────────────
+const _ZONA_MAP = (function(){
+  const m={}; _P2S.forEach(function(s){ m[s.id]=String(s.z); }); return m;
+})();
+const _P2GM = 4194.3;
+const _GM  = 4194.3;
+
+// ── Color & format helpers ────────────────────────────────────────
+const _C6='#1B4F8A',_C5='#2D7A3A',_C4='#C06B10';
+const _CG='#4A7C2E',_CR='#B83232',_CN='#888888',_CY='#F2C40E';
+const _CICLO_COL={'6 CORTO':_C6,'5 CORTO':_C5,'4 LARGO':_C4};
+const _CICLO_BG={'6 CORTO':'#DBEAFE','5 CORTO':'#DCFCE7','4 LARGO':'#FEF3C7'};
+const _CICLO_TX={'6 CORTO':'#1E40AF','5 CORTO':'#166534','4 LARGO':'#92400E'};
+
+function _col_ie(ie){
+  if(ie>=600) return '#2D5A1B';
+  if(ie>=0)   return '#4A7C2E';
+  if(ie>=-600) return '#E8751A';
+  return '#B83232';
+}
+function _fmt(v){return Math.round(v).toLocaleString('es-AR');}
+function _fmtd(v,d){return v.toFixed(d||1).replace('.',',');}
+
+
+function _bp(vals){
+  if(!vals||!vals.length) return null;
+  const s=[...vals].sort((a,b)=>a-b),n=s.length;
+  const q1=s[Math.floor(n*.25)],q2=s[Math.floor(n*.5)],q3=s[Math.floor(n*.75)];
+  const iqr=q3-q1,lo=Math.max(s[0],q1-1.5*iqr),hi=Math.min(s[n-1],q3+1.5*iqr);
+  return {q1,q2,q3,lo,hi,n:vals.length,mean:vals.reduce((a,b)=>a+b,0)/vals.length,outliers:s.filter(v=>v<lo||v>hi)};
+}
+
+function _matStats(){
+  const mats=[...new Set(_P3D.map(r=>r.m))];
+  const gm=_P3D.reduce((a,b)=>a+b.r,0)/_P3D.length;
+  return mats.map(m=>{
+    const v=_P3D.filter(r=>r.m===m).map(r=>r.r);
+    const mean=v.reduce((a,b)=>a+b,0)/v.length;
+    const sd=Math.sqrt(v.reduce((s,x)=>s+(x-mean)**2,0)/v.length);
+    const cv=mean>0?sd/mean*100:0;
+    const row=_P3D.find(r=>r.m===m)||{};
+    const idx=gm>0?mean/gm*100-100:0;
+    const above=_P3D.filter(r=>r.m===m).filter(r=>{
+      const sv=_P3D.filter(x=>x.s===r.s);const sm=sv.reduce((a,b)=>a+b.r,0)/sv.length;return r.r>sm;
+    }).length;
+    const pct=Math.round(above/v.length*100);
+    return {m,mean,sd,cv,n:v.length,idx,ciclo:row.c||'',emp:row.e||'',pct};
+  }).sort((a,b)=>b.mean-a.mean);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────
+var _curSec='home';
+function showSec(id){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.drw-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.nb-item').forEach(b=>b.classList.remove('active'));
+  const el=document.getElementById('sec-'+id);
+  if(el) el.classList.add('active');
+  document.querySelectorAll(`[onclick*="showSec('${id}')"]`).forEach(b=>b.classList.add('active'));
+  const nb=document.getElementById('nb-'+id);
+  if(nb) nb.classList.add('active');
+  _curSec=id;
+  window.scrollTo(0,0);
+  // Lazy render
+  setTimeout(()=>{
+    if(id==='p1') renderP1();
+    if(id==='p2') renderP2();
+    if(id==='p3') renderP3();
+    if(id==='p4') renderP4();
+    if(id==='p5') renderP5();
+    if(id==='p6') renderP6();
+    if(id==='p7') renderP7();
+    if(id==='p8') renderP8();
+    if(id==='p9') renderP9();
+    if(id==='p10') renderP10();
+  },60);
+}
+
+function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drawer-overlay').classList.toggle('open');
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+}
+
+function toggleFbar(id){
+  const el=document.getElementById(id);
+  const icon=document.getElementById(id+'-icon');
+  if(!el) return;
+  const isOpen=el.classList.contains('open');
+  if(isOpen){
+    el.classList.remove('open');
+    if(icon) icon.textContent='▼';
+  }else{
+    el.classList.add('open');
+    if(icon) icon.textContent='▲';
+  }
+}
+
+// ── P2 FILTER HELPER ──────────────────────────────────────────────
+function _p3filt(){
+  const fz=document.getElementById('f3-zona')?.value||'';
+  const fs=document.getElementById('f3-sitio')?.value||'';
+  const fc=document.getElementById('f3-ciclo')?.value||'';
+  const ft=document.getElementById('f3-tech')?.value||'';
+  return _P3D.filter(r=>{
+    if(fz&&_ZONA_MAP[r.s]!==fz) return false;
+    if(fs&&r.s!==fs) return false;
+    if(fc&&r.c!==fc) return false;
+    if(ft==='en'&&!r.en) return false;
+    if(ft==='sts'&&!r.sts) return false;
+    if(ft==='ip'&&!r.ip) return false;
+    if(ft==='conv'&&(r.en||r.sts||r.ip)) return false;
+    return true;
+  });
+}
+function resetP3(){
+  ['f3-zona','f3-sitio','f3-ciclo','f3-tech'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  renderP3();
+}
+function resetP4(){
+  ['f4-zona','f4-tech','f4-ciclo'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  renderP4();
+}
+function resetP5(){
+  ['f5-ciclo','f5-tech'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  renderP5();
+}
+function resetP6(){
+  ['f6-ciclo','f6-tech'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  renderP6();
+}
+function resetP8(){
+  const e=document.getElementById('f8-ciclo');if(e)e.value='';renderP8();
+}
+function resetP10(){
+  const e=document.getElementById('f10-mat');if(e)e.value='';renderP10();
+}
+
+// ── P1 ─────────────────────────────────────────────────────────────
+function renderP1(){
+  const gm=_P3D.reduce((a,b)=>a+b.r,0)/_P3D.length;
+  const sd=Math.sqrt(_P3D.reduce((s,r)=>s+(r.r-gm)**2,0)/_P3D.length);
+  const cv=sd/gm*100;
+  const ies=_P2S.map(s=>s.ie);
+  const ieRange=Math.round(Math.max(...ies)-Math.min(...ies));
+  const el=id=>document.getElementById(id);
+  if(el('p1-gm')) el('p1-gm').textContent=_fmt(gm);
+  if(el('p1-n')) el('p1-n').textContent=_P3D.length;
+  if(el('p1-mats')) el('p1-mats').textContent=new Set(_P3D.map(r=>r.m)).size;
+  if(el('p1-cv')) el('p1-cv').textContent=_fmtd(cv)+'%';
+  if(el('p1-ie')) el('p1-ie').textContent=_fmt(ieRange);
+  if(el('p1-emps')) el('p1-emps').textContent=new Set(_P3D.map(r=>r.e)).size;
+  if(el('p1-badge')) el('p1-badge').textContent='Soja · 2025/26 · n='+_P3D.length;
+
+  const wrap=el('p1-sites-render');
+  if(!wrap) return;
+  const sorted=[..._P2S].sort((a,b)=>b.ie-a.ie);
+  wrap.innerHTML=sorted.map(s=>{
+    const col=_col_ie(s.ie);
+    const ieStr=(s.ie>=0?'+':'')+_fmt(s.ie);
+    return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #F0EEEA;">
+      <div style="width:10px;height:10px;border-radius:50%;background:${col};flex-shrink:0;"></div>
+      <div style="flex:1;font-size:12px;font-weight:700;color:#1A1A1A;">${s.id}</div>
+      <div style="font-size:11px;color:#888;">Z${s.z}</div>
+      <div style="font-size:12px;font-weight:700;color:${col};">${ieStr}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── P2 ─────────────────────────────────────────────────────────────
+function renderP2(){
+  _p2drawMap();
+  _p2drawChron();
+  _p2drawSiteCards();
+}
+function _p2drawMap(){
+  const el=document.getElementById('p2-map');
+  if(!el||el.dataset.rendered) return;
+  el.dataset.rendered='1';
+  const W=el.offsetWidth||340,H=310,pad=14,F='Arial,Helvetica,sans-serif';
+  const minLat=-34.7,maxLat=-27.2,minLon=-66.4,maxLon=-61.0;
+  function proj(la,lo){
+    return [pad+(lo-minLon)/(maxLon-minLon)*(W-2*pad),
+            pad+(maxLat-la)/(maxLat-minLat)*(H-2*pad)];
+  }
+  const ol=[[-27.6,-62.0],[-27.3,-63.5],[-27.8,-65.1],[-28.7,-65.5],[-30.2,-65.9],
+            [-31.5,-66.2],[-33.1,-65.3],[-34.1,-64.2],[-34.6,-62.8],[-33.8,-61.5],
+            [-32.1,-61.3],[-30.0,-61.2],[-28.5,-61.8],[-27.6,-62.0]];
+  const pts=ol.map(p=>proj(p[0],p[1]).join(',')).join(' ');
+  let o=`<polygon points="${pts}" fill="#EDF2E8" stroke="#B8C9A8" stroke-width="1.5"/>`;
+  const seen={};
+  _P2S.forEach(s=>{
+    if(!s.lat||!s.lon) return;
+    let dlat=s.lat,dlon=s.lon;
+    const key=dlat.toFixed(3)+','+dlon.toFixed(3);
+    if(seen[key]) dlat-=0.022;
+    seen[key]=true;
+    const xy=proj(dlat,dlon),col=_col_ie(s.ie);
+    const r=8;
+    o+=`<circle cx="${xy[0]}" cy="${xy[1]}" r="${r}" fill="${col}" stroke="#fff" stroke-width="2"/>`;
+    const sname=s.id.split(' ')[0].substring(0,9);
+    o+=`<text x="${xy[0]+r+2}" y="${xy[1]+3.5}" font-family="${F}" font-size="8.5" fill="#111">${sname}</text>`;
+  });
+  el.innerHTML=`<svg width="${W}" height="${H}" style="display:block">${o}</svg>`;
+}
+function _p2drawChron(){
+  const el=document.getElementById('p2-chron');
+  if(!el) return;
+  const W=el.offsetWidth||300,F='Arial,Helvetica,sans-serif';
+  const PL=100,PR=8,PT=10,PB=16;
+  function dayOff(ds){
+    const p=ds.split('/').map(Number);
+    return Math.round((new Date(p[2],p[1]-1,p[0])-new Date(p[2],10,1))/86400000);
+  }
+  const offs=_P2S.map(s=>({...s,off:dayOff(s.fs)}));
+  const minO=Math.min(...offs.map(s=>s.off));
+  const maxO=Math.max(...offs.map(s=>s.off))+10;
+  function xp(v){return PL+(v-minO)/(maxO-minO)*(W-PL-PR);}
+  const bh=16,gap=3;
+  const H=PT+PB+offs.length*(bh+gap)+16;
+  const months=[['1-Nov',0],['1-Dic',30],['15-Dic',44],['1-Ene',61]];
+  let o='';
+  months.forEach(([lbl,d])=>{
+    if(d<minO-3||d>maxO+3) return;
+    const x=xp(d);
+    o+=`<line x1="${x}" y1="${PT}" x2="${x}" y2="${H-PB}" stroke="#DDDDDD" stroke-width="0.5"/>`;
+    o+=`<text x="${x}" y="${H-PB+12}" font-family="${F}" font-size="7" fill="#BBBBBB" text-anchor="middle">${lbl}</text>`;
+  });
+  const sorted=[...offs].sort((a,b)=>a.off-b.off);
+  sorted.forEach((s,i)=>{
+    const y=PT+i*(bh+gap),col=_col_ie(s.ie);
+    const bw=Math.max(8,xp(s.off+8)-xp(s.off));
+    o+=`<rect x="${xp(s.off)}" y="${y}" width="${bw}" height="${bh}" fill="${col}" opacity="0.85" rx="2"/>`;
+    const name=s.id.length>14?s.id.substring(0,14)+'…':s.id;
+    o+=`<text x="${PL-4}" y="${y+bh*.72}" font-family="${F}" font-size="9" fill="#333" text-anchor="end">${name}</text>`;
+    const xEnd=xp(s.off)+bw+3;
+    if(xEnd<W-PR-20) o+=`<text x="${xEnd}" y="${y+bh*.72}" font-family="${F}" font-size="7.5" fill="#888">${s.fs}</text>`;
+  });
+  el.innerHTML=`<svg width="${W}" height="${H}" style="display:block;overflow:visible">${o}</svg>`;
+}
+function _p2drawSiteCards(){
+  const wrap=document.getElementById('p2-site-cards');
+  if(!wrap) return;
+  const sorted=[..._P2S].sort((a,b)=>b.ie-a.ie);
+  const gm=_P2GM||4194.3;
+  wrap.innerHTML=sorted.map(s=>{
+    const col=_col_ie(s.ie);
+    const ieStr=(s.ie>=0?'+':'')+_fmt(s.ie)+' kg/ha';
+    const ieCol=s.ie>=0?'#2D7A3A':'#B83232';
+    return `<div class="site-card">
+      <div class="site-dot" style="background:${col}"></div>
+      <div class="site-info">
+        <div class="site-name">${s.id}</div>
+        <div class="site-meta">Z${s.z} · ${s.fs} · ${s.ant}</div>
+      </div>
+      <div class="site-val">
+        <div class="site-rend">${_fmt(s.mean)}</div>
+        <div class="site-ie" style="color:${ieCol}">${ieStr}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── P3 ─────────────────────────────────────────────────────────────
+function renderP3(){
+  const data=_p3filt();
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:_GM;
+  const mats=[...new Set(data.map(r=>r.m))];
+  const ns=new Set(data.map(r=>r.s)).size;
+  const b=document.getElementById('p3-badge');
+  if(b) b.textContent=`${data.length} obs · ${ns} sitios · ${mats.length} materiales`;
+
+  // Ranking cards
+  const matMeans=mats.map(m=>{
+    const v=data.filter(r=>r.m===m).map(r=>r.r);
+    const mean=v.reduce((a,b)=>a+b,0)/v.length;
+    const row=_P3D.find(r=>r.m===m)||{};
+    return {m,mean,n:v.length,ciclo:row.c||'',emp:row.e||''};
+  }).sort((a,b)=>b.mean-a.mean).filter(x=>x.n>=5);
+  
+  const maxMean=matMeans.length?matMeans[0].mean:gm;
+  const wrap=document.getElementById('p3-rank-cards');
+  if(wrap){
+    if(!matMeans.length){wrap.innerHTML='<div class="card" style="text-align:center;color:#AAA;padding:20px;font-size:12px">Sin materiales con ≥5 sitios para los filtros seleccionados</div>';}
+    else wrap.innerHTML=matMeans.map((ms,i)=>{
+      const col=_CICLO_COL[ms.ciclo]||'#888';
+      const bg=_CICLO_BG[ms.ciclo]||'#F4F4F4';
+      const tx=_CICLO_TX[ms.ciclo]||'#444';
+      const barW=Math.round(ms.mean/maxMean*100);
+      const idx=ms.mean/gm*100-100;
+      const idxStr=(idx>=0?'+':'')+_fmtd(idx)+'%';
+      const idxCol=idx>=0?'#2D7A3A':'#B83232';
+      return `<div class="mat-card">
+        <div class="mat-top">
+          <div class="mat-rank">#${i+1}</div>
+          <div style="flex:1">
+            <div class="mat-name">${ms.m}</div>
+            <div class="mat-emp">${ms.emp} · <span style="font-size:9px;font-weight:700;padding:1.5px 5px;border-radius:2px;background:${bg};color:${tx}">${ms.ciclo}</span></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:15px;font-weight:700;color:#1A1A1A">${_fmt(ms.mean)}</div>
+            <div style="font-size:11px;font-weight:700;color:${idxCol}">${idxStr}</div>
+          </div>
+        </div>
+        <div class="mat-bar-wrap">
+          <div class="mat-bar" style="width:${barW}%;background:${col}"></div>
+        </div>
+        <div style="font-size:9.5px;color:#888;margin-top:4px">n=${ms.n} sitios</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Site boxplot SVG
+  const bpWrap=document.getElementById('p3-site-bp');
+  if(bpWrap && data.length){
+    const sites=[...new Set(data.map(r=>r.s))];
+    const siteMeans={};
+    sites.forEach(s=>{const v=data.filter(r=>r.s===s).map(r=>r.r);siteMeans[s]=v.reduce((a,b)=>a+b,0)/v.length;});
+    const sorted=[...sites].sort((a,b)=>siteMeans[b]-siteMeans[a]);
+    const W=bpWrap.offsetWidth||320;
+    const PL=8,PR=8,PT=16,PB=60;
+    const bh=22,gap=4;
+    const H=PT+PB+sorted.length*(bh+gap);
+    const all=data.map(r=>r.r);
+    const minV=Math.min(...all)*0.97,maxV=Math.max(...all)*1.02;
+    const xp=v=>PL+(v-minV)/(maxV-minV)*(W-PL-PR);
+    const gx=xp(gm);
+    let o='';
+    // Mean line
+    o+=`<line x1="${gx}" y1="${PT}" x2="${gx}" y2="${H-PB}" stroke="#B83232" stroke-width="1" stroke-dasharray="3,2"/>`;
+    o+=`<text x="${gx+2}" y="${PT+10}" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#B83232" font-weight="700">Media</text>`;
+    sorted.forEach((s,i)=>{
+      const y=PT+i*(bh+gap),cy=y+bh/2;
+      const vals=data.filter(r=>r.s===s).map(r=>r.r);
+      const bp=_bp(vals);if(!bp) return;
+      const col=siteMeans[s]>=gm?'#4A7C2E':'#B83232';
+      o+=`<line x1="${xp(bp.lo)}" y1="${cy}" x2="${xp(bp.hi)}" y2="${cy}" stroke="${col}" stroke-width="1.5"/>`;
+      o+=`<line x1="${xp(bp.lo)}" y1="${y+bh*.15}" x2="${xp(bp.lo)}" y2="${y+bh*.85}" stroke="${col}" stroke-width="1.2"/>`;
+      o+=`<line x1="${xp(bp.hi)}" y1="${y+bh*.15}" x2="${xp(bp.hi)}" y2="${y+bh*.85}" stroke="${col}" stroke-width="1.2"/>`;
+      o+=`<rect x="${xp(bp.q1)}" y="${y+bh*.1}" width="${Math.max(2,xp(bp.q3)-xp(bp.q1))}" height="${bh*.8}" fill="${col}" opacity="0.75"/>`;
+      o+=`<line x1="${xp(bp.q2)}" y1="${y+bh*.08}" x2="${xp(bp.q2)}" y2="${y+bh*.92}" stroke="#fff" stroke-width="2"/>`;
+      const sname=s.length>18?s.substring(0,18)+'…':s;
+      o+=`<text x="${PL+2}" y="${y+bh*.72}" font-family="Arial,Helvetica,sans-serif" font-size="8.5" fill="#333">${sname}</text>`;
+      o+=`<text x="${W-PR-2}" y="${y+bh*.72}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#333" text-anchor="end" font-weight="700">${_fmt(bp.mean)}</text>`;
+    });
+    // x axis ticks
+    const step=maxV-minV>2000?1000:500;
+    for(let v=Math.ceil(minV/step)*step;v<=maxV;v+=step){
+      const x=xp(v);
+      o+=`<text x="${x}" y="${H-PB+12}" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#888" text-anchor="middle">${_fmt(v)}</text>`;
+    }
+    bpWrap.innerHTML=`<svg width="${W}" height="${H}" style="display:block;overflow:visible">${o}</svg>`;
+  }
+}
+
+// ── P4 ─────────────────────────────────────────────────────────────
+function _p4filt(){
+  const fz=document.getElementById('f4-zona')?.value||'';
+  const ft=document.getElementById('f4-tech')?.value||'';
+  const fc=document.getElementById('f4-ciclo')?.value||'';
+  return _P3D.filter(r=>{
+    if(fz&&_ZONA_MAP[r.s]!==fz) return false;
+    if(ft==='en'&&!r.en) return false;
+    if(ft==='sts'&&!r.sts) return false;
+    if(ft==='ip'&&!r.ip) return false;
+    if(ft==='conv'&&(r.en||r.sts||r.ip)) return false;
+    if(fc&&r.c!==fc) return false;
+    return true;
+  });
+}
+function renderP4(){
+  const data=_p4filt();
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:_GM;
+  const b=document.getElementById('p4-badge');
+  if(b) b.textContent=`${data.length} obs · ${new Set(data.map(r=>r.m)).size} materiales`;
+
+  // Ciclo horizontal bars
+  const cicloWrap=document.getElementById('p4-ciclo-chart');
+  if(cicloWrap){
+    const ciclos=['6 CORTO','5 CORTO','4 LARGO'];
+    const rows=ciclos.map(c=>{
+      const v=data.filter(r=>r.c===c).map(r=>r.r);
+      if(!v.length) return null;
+      const m=v.reduce((a,b)=>a+b,0)/v.length;
+      const idx=m/gm*100-100;
+      return {c,m,n:v.length,idx,col:_CICLO_COL[c]||'#888',bg:_CICLO_BG[c],tx:_CICLO_TX[c]};
+    }).filter(Boolean);
+    if(!rows.length){cicloWrap.innerHTML='<div style="padding:12px;color:#AAA;font-size:11px">Sin datos</div>';return;}
+    const maxM=Math.max(...rows.map(r=>r.m));
+    cicloWrap.innerHTML=rows.map(r=>{
+      const pct=Math.round(r.m/maxM*100);
+      const idxStr=(r.idx>=0?'+':'')+_fmtd(r.idx)+'%';
+      const idxCol=r.idx>=0?'#2D7A3A':'#B83232';
+      return `<div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:11.5px;font-weight:700">
+          <span style="padding:2px 7px;border-radius:3px;background:${r.bg};color:${r.tx}">${r.c}</span>
+          <span style="color:#1A1A1A">${_fmt(r.m)} kg/ha <span style="font-weight:400;color:${idxCol}">${idxStr}</span></span>
+        </div>
+        <div style="height:10px;background:#EEEEEB;border-radius:5px;overflow:hidden">
+          <div style="width:${pct}%;height:100%;background:${r.col};border-radius:5px"></div>
+        </div>
+        <div style="font-size:9.5px;color:#888;margin-top:3px">n=${r.n} obs</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Tech bars
+  const techWrap=document.getElementById('p4-tech-chart');
+  if(techWrap){
+    const techs=[
+      {key:'en',label:'Enlist',col:'#1B4F8A'},
+      {key:'sts',label:'STS',col:'#2D7A3A'},
+      {key:'ip',label:'IPRO/Conkesta',col:'#7C3AED'},
+    ];
+    const rows=techs.map(t=>{
+      const v=data.filter(r=>r[t.key]===1).map(r=>r.r);
+      const vNo=data.filter(r=>r[t.key]===0).map(r=>r.r);
+      const m=v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
+      const mNo=vNo.length?vNo.reduce((a,b)=>a+b,0)/vNo.length:null;
+      return {...t,m,mNo,n:v.length,nNo:vNo.length};
+    }).filter(r=>r.m!==null);
+    const maxM=Math.max(...rows.flatMap(r=>[r.m||0,r.mNo||0]));
+    techWrap.innerHTML=rows.map(r=>{
+      const pw=Math.round((r.m||0)/maxM*100);
+      const pnw=Math.round((r.mNo||0)/maxM*100);
+      const idx=(r.m||0)/gm*100-100;
+      const idxStr=(idx>=0?'+':'')+_fmtd(idx)+'%';
+      const idxCol=idx>=0?'#2D7A3A':'#B83232';
+      return `<div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em">${r.label}</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <div style="font-size:10px;color:#333;width:54px;flex-shrink:0">Con</div>
+          <div style="flex:1;height:9px;background:#EEEEEB;border-radius:4px;overflow:hidden">
+            <div style="width:${pw}%;height:100%;background:${r.col};border-radius:4px"></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;width:56px;text-align:right">${_fmt(r.m)} <span style="font-weight:400;color:${idxCol};font-size:9px">${idxStr}</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:#AAA;width:54px;flex-shrink:0">Sin</div>
+          <div style="flex:1;height:9px;background:#EEEEEB;border-radius:4px;overflow:hidden">
+            <div style="width:${pnw}%;height:100%;background:#CCCCCC;border-radius:4px"></div>
+          </div>
+          <div style="font-size:11px;color:#888;width:56px;text-align:right">${_fmt(r.mNo||0)}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // TOP 5
+  const top5wrap=document.getElementById('p4-top5');
+  if(top5wrap){
+    const mats=[...new Set(data.map(r=>r.m))];
+    const ranked=mats.map(m=>{
+      const v=data.filter(r=>r.m===m).map(r=>r.r);
+      if(v.length<5) return null;
+      const mean=v.reduce((a,b)=>a+b,0)/v.length;
+      const row=_P3D.find(r=>r.m===m)||{};
+      const idx=mean/gm*100-100;
+      return {m,mean,n:v.length,ciclo:row.c||'',emp:row.e||'',idx};
+    }).filter(Boolean).sort((a,b)=>b.mean-a.mean).slice(0,5);
+    const maxM=ranked.length?ranked[0].mean:gm;
+    if(!ranked.length){top5wrap.innerHTML='<div style="padding:12px;color:#AAA;font-size:11px">Sin materiales con ≥5 sitios</div>';}
+    else top5wrap.innerHTML=ranked.map((ms,i)=>{
+      const col=_CICLO_COL[ms.ciclo]||'#888';
+      const bg=_CICLO_BG[ms.ciclo]||'#F4F4F4';
+      const tx=_CICLO_TX[ms.ciclo]||'#444';
+      const barW=Math.round(ms.mean/maxM*100);
+      const idxStr=(ms.idx>=0?'+':'')+_fmtd(ms.idx)+'%';
+      const idxCol=ms.idx>=0?'#2D7A3A':'#B83232';
+      return `<div class="mat-card">
+        <div class="mat-top">
+          <div class="mat-rank">#${i+1}</div>
+          <div style="flex:1">
+            <div class="mat-name">${ms.m}</div>
+            <div class="mat-emp">${ms.emp} · <span style="font-size:9px;font-weight:700;padding:1.5px 5px;border-radius:2px;background:${bg};color:${tx}">${ms.ciclo}</span></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:15px;font-weight:700">${_fmt(ms.mean)}</div>
+            <div style="font-size:11px;font-weight:700;color:${idxCol}">${idxStr}</div>
+          </div>
+        </div>
+        <div class="mat-bar-wrap"><div class="mat-bar" style="width:${barW}%;background:${col}"></div></div>
+      </div>`;
+    }).join('');
+  }
+}
+
+// ── P5 ─────────────────────────────────────────────────────────────
+function _p5filt(){
+  const fc=document.getElementById('f5-ciclo')?.value||'';
+  const ft=document.getElementById('f5-tech')?.value||'';
+  return _P3D.filter(r=>{
+    if(fc&&r.c!==fc) return false;
+    if(ft==='en'&&!r.en) return false;
+    if(ft==='sts'&&!r.sts) return false;
+    if(ft==='ip'&&!r.ip) return false;
+    if(ft==='conv'&&(r.en||r.sts||r.ip)) return false;
+    return true;
+  });
+}
+function renderP5(){
+  const data=_p5filt();
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:_GM;
+  const mats=[...new Set(data.map(r=>r.m))];
+  const sites=[...new Set(data.map(r=>r.s))];
+  const siteMeans={};
+  sites.forEach(s=>{const v=data.filter(r=>r.s===s).map(r=>r.r);siteMeans[s]=v.reduce((a,b)=>a+b,0)/v.length;});
+
+  // % above
+  const matStats=mats.map(m=>{
+    const obs=data.filter(r=>r.m===m);
+    const above=obs.filter(r=>siteMeans[r.s]!=null&&r.r>siteMeans[r.s]).length;
+    const row=_P3D.find(r=>r.m===m)||{};
+    const mean=obs.length?obs.reduce((a,b)=>a+b.r,0)/obs.length:0;
+    return {m,pct:obs.length?Math.round(above/obs.length*100):0,mean,ciclo:row.c||'',n:obs.length};
+  }).sort((a,b)=>b.pct-a.pct||b.mean-a.mean);
+
+  const pctWrap=document.getElementById('p5-pct-chart');
+  if(pctWrap){
+    if(!matStats.length){pctWrap.innerHTML='<div style="padding:12px;color:#AAA;font-size:11px">Sin datos</div>';}
+    else pctWrap.innerHTML=matStats.map(ms=>{
+      const col=ms.pct>=70?'#2D5A1B':ms.pct>=50?'#4A7C2E':'#B83232';
+      const bg=_CICLO_BG[ms.ciclo]||'#F4F4F4';
+      const tx=_CICLO_TX[ms.ciclo]||'#444';
+      return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+        <div style="font-size:10px;width:90px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#333">${ms.m}</div>
+        <div style="flex:1;height:11px;background:#EEEEEB;border-radius:4px;overflow:hidden;position:relative">
+          <div style="width:${ms.pct}%;height:100%;background:${col};border-radius:4px;opacity:.85"></div>
+          <div style="position:absolute;top:0;left:50%;width:1px;bottom:0;background:#B83232;opacity:.4"></div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:${col};width:32px;text-align:right">${ms.pct}%</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Relative index
+  const idxWrap=document.getElementById('p5-idx-chart');
+  if(idxWrap){
+    const idxStats=mats.map(m=>{
+      const v=data.filter(r=>r.m===m).map(r=>r.r);
+      const mean=v.length?v.reduce((a,b)=>a+b,0)/v.length:0;
+      const idx=gm>0?mean/gm*100-100:0;
+      const row=_P3D.find(r=>r.m===m)||{};
+      return {m,idx,mean,ciclo:row.c||'',n:v.length};
+    }).sort((a,b)=>b.idx-a.idx);
+    const maxAbs=Math.max(12,...idxStats.map(s=>Math.abs(s.idx)));
+    idxWrap.innerHTML=idxStats.map(ms=>{
+      const col=_CICLO_COL[ms.ciclo]||'#888';
+      const pct=Math.round(Math.abs(ms.idx)/maxAbs*50);
+      const isPos=ms.idx>=0;
+      const idxStr=(isPos?'+':'')+_fmtd(ms.idx)+'%';
+      const idxCol=isPos?'#2D7A3A':'#B83232';
+      return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+        <div style="font-size:10px;width:90px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#333">${ms.m}</div>
+        <div style="flex:1;height:11px;background:#EEEEEB;border-radius:4px;overflow:hidden;position:relative">
+          ${isPos?
+            `<div style="position:absolute;left:50%;width:${pct}%;height:100%;background:${col};opacity:.85"></div>`:
+            `<div style="position:absolute;right:50%;width:${pct}%;height:100%;background:${col};opacity:.85"></div>`
+          }
+          <div style="position:absolute;top:0;left:50%;width:1.5px;bottom:0;background:#B83232;opacity:.5"></div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:${idxCol};width:40px;text-align:right">${idxStr}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Simplified heatmap: just show diff vs site mean, one row per material, abbreviated
+  const hmWrap=document.getElementById('p5-hm');
+  if(hmWrap){
+    const sortedSites=[...sites].sort((a,b)=>siteMeans[b]-siteMeans[a]);
+    const sortedMats=[...mats].sort((a,b)=>{
+      const ma=data.filter(r=>r.m===a).map(r=>r.r).reduce((s,v,_,arr)=>s+v/arr.length,0);
+      const mb=data.filter(r=>r.m===b).map(r=>r.r).reduce((s,v,_,arr)=>s+v/arr.length,0);
+      return mb-ma;
+    });
+    const diff={};
+    data.forEach(r=>{
+      if(!diff[r.m]) diff[r.m]={};
+      diff[r.m][r.s]=r.r-(siteMeans[r.s]||0);
+    });
+    const allDiffs=Object.values(diff).flatMap(row=>Object.values(row));
+    const maxAbs=Math.max(50,...allDiffs.map(v=>Math.abs(v)));
+    function cellColor(v){
+      if(v===null) return '#EEEEEE';
+      const t=v/maxAbs;
+      if(t>0.3) return '#1E7C34';
+      if(t>0) return '#A8D8A8';
+      if(t>-0.3) return '#FFC8C8';
+      return '#C43030';
+    }
+    function cellText(v){
+      if(v===null) return '#888';
+      return Math.abs(v)>300?'#fff':'#333';
+    }
+    // Show abbreviated site names as columns
+    const abbrev=s=>s.split(' ').map(w=>w[0]).join('').substring(0,4);
+    let html='<div style="overflow-x:auto">';
+    // Header
+    html+='<div style="display:flex;gap:2px;margin-bottom:3px">';
+    html+=`<div style="width:88px;flex-shrink:0;font-size:9px;color:#888">Material</div>`;
+    sortedSites.forEach(s=>{
+      html+=`<div style="flex:1;min-width:26px;font-size:8px;color:#555;text-align:center;font-weight:700">${abbrev(s)}</div>`;
+    });
+    html+='</div>';
+    // Rows
+    sortedMats.forEach(m=>{
+      html+='<div style="display:flex;gap:2px;margin-bottom:2px;align-items:center">';
+      const shortM=m.length>12?m.substring(0,12)+'…':m;
+      html+=`<div style="width:88px;flex-shrink:0;font-size:8.5px;color:#333;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${shortM}</div>`;
+      sortedSites.forEach(s=>{
+        const v=diff[m]&&diff[m][s]!=null?diff[m][s]:null;
+        const bg=cellColor(v);
+        const tc=cellText(v);
+        const txt=v!==null?(v>=0?'+':'')+Math.round(v):'';
+        html+=`<div style="flex:1;min-width:26px;height:18px;background:${bg};border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:${tc}">${txt}</div>`;
+      });
+      html+='</div>';
+    });
+    html+='</div>';
+    hmWrap.innerHTML=html;
+  }
+
+  const badge=document.getElementById('p5-badge');
+  if(badge) badge.textContent=`${data.length} obs · ${mats.length} materiales`;
+}
+
+// ── P6 ─────────────────────────────────────────────────────────────
+function _p6filt(){
+  const fc=document.getElementById('f6-ciclo')?.value||'';
+  const ft=document.getElementById('f6-tech')?.value||'';
+  return _P3D.filter(r=>{
+    if(fc&&r.c!==fc) return false;
+    if(ft==='en'&&!r.en) return false;
+    if(ft==='sts'&&!r.sts) return false;
+    if(ft==='ip'&&!r.ip) return false;
+    if(ft==='conv'&&(r.en||r.sts||r.ip)) return false;
+    return true;
+  });
+}
+function renderP6(){
+  const data=_p6filt();
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:_GM;
+  const mats=[...new Set(data.map(r=>r.m))];
+  const matSt=mats.map(m=>{
+    const v=data.filter(r=>r.m===m).map(r=>r.r);
+    const n=v.length;
+    const mean=v.reduce((a,b)=>a+b,0)/n;
+    const sd=Math.sqrt(v.reduce((s,x)=>s+(x-mean)**2,0)/n);
+    const cv=mean>0?sd/mean*100:0;
+    const row=_P3D.find(r=>r.m===m)||{};
+    return {m,mean,cv,n,ciclo:row.c||''};
+  });
+
+  // Scatter SVG
+  const wrap=document.getElementById('p6-scatter');
+  if(wrap && matSt.length){
+    const W=wrap.offsetWidth||320;
+    const H=260,PL=44,PR=16,PB=36,PT=20;
+    const means=matSt.map(s=>s.mean),cvs=matSt.map(s=>s.cv);
+    const xMin=Math.min(...means)-200,xMax=Math.max(...means)+200;
+    const yMin=Math.max(0,Math.min(...cvs)-3),yMax=Math.max(...cvs)+3;
+    const xp=v=>PL+(v-xMin)/(xMax-xMin)*(W-PL-PR);
+    const yp=v=>PT+(yMax-v)/(yMax-yMin)*(H-PT-PB);
+    const gmCV=data.length?(() => {const allcv=data.map(r=>r.r);const m=allcv.reduce((a,b)=>a+b,0)/allcv.length;const sd=Math.sqrt(allcv.reduce((s,x)=>s+(x-m)**2,0)/allcv.length);return sd/m*100;})():15;
+    const gx=xp(gm),gy=yp(gmCV);
+    let o='';
+    // Quadrant lines
+    o+=`<line x1="${gx}" y1="${PT}" x2="${gx}" y2="${H-PB}" stroke="#B83232" stroke-width="0.8" stroke-dasharray="3,2" opacity=".5"/>`;
+    o+=`<line x1="${PL}" y1="${gy}" x2="${W-PR}" y2="${gy}" stroke="#B83232" stroke-width="0.8" stroke-dasharray="3,2" opacity=".5"/>`;
+    // Grid
+    const xStep=(xMax-xMin)>2000?1000:500;
+    for(let v=Math.ceil(xMin/xStep)*xStep;v<=xMax;v+=xStep){
+      o+=`<line x1="${xp(v)}" y1="${PT}" x2="${xp(v)}" y2="${H-PB}" stroke="#F0EFEB" stroke-width="0.5"/>`;
+      o+=`<text x="${xp(v)}" y="${H-PB+12}" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#888" text-anchor="middle">${_fmt(v)}</text>`;
+    }
+    for(let v=Math.ceil(yMin)*1;v<=yMax;v+=5){
+      o+=`<line x1="${PL}" y1="${yp(v)}" x2="${W-PR}" y2="${yp(v)}" stroke="#F0EFEB" stroke-width="0.5"/>`;
+      o+=`<text x="${PL-3}" y="${yp(v)+3}" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#888" text-anchor="end">${v.toFixed(0)}%</text>`;
+    }
+    // Points
+    matSt.forEach(ms=>{
+      const col=_CICLO_COL[ms.ciclo]||'#888';
+      const r=7;
+      const cx=xp(ms.mean),cy=yp(ms.cv);
+      o+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${col}" opacity="0.75" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/>`;
+      const shortM=ms.m.split(' ').slice(0,2).join(' ').substring(0,10);
+      const lx=cx>xp(gm)?cx+r+2:cx-r-2;
+      const an=cx>xp(gm)?'start':'end';
+      if(ms.mean>4000||ms.cv<11||ms.cv>18){
+        o+=`<text x="${lx}" y="${cy+3}" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="${col}" text-anchor="${an}" font-weight="700">${shortM}</text>`;
+      }
+    });
+    // Axis labels
+    o+=`<text x="${PL+(W-PL-PR)/2}" y="${H-PB+28}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#666" text-anchor="middle" font-weight="700">Rendimiento medio (kg/ha)</text>`;
+    o+=`<text x="12" y="${PT+(H-PT-PB)/2}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#666" text-anchor="middle" font-weight="700" transform="rotate(-90,12,${PT+(H-PT-PB)/2})">CV (%)</text>`;
+    wrap.innerHTML=`<svg width="${W}" height="${H}" style="display:block;overflow:visible">${o}</svg>`;
+  }
+
+  // Quad cards
+  const quadWrap=document.getElementById('p6-quad-cards');
+  if(quadWrap){
+    const gmCV2=data.length?(() => {const v=data.map(r=>r.r);const m=v.reduce((a,b)=>a+b,0)/v.length;const sd=Math.sqrt(v.reduce((s,x)=>s+(x-m)**2,0)/v.length);return sd/m*100;})():15;
+    const quads=[
+      {label:'⬤ Alto rend · Alta estab',color:'#2D5A1B',mats:matSt.filter(s=>s.mean>=gm&&s.cv<=gmCV2)},
+      {label:'⬤ Alto rend · Baja estab',color:'#E8751A',mats:matSt.filter(s=>s.mean>=gm&&s.cv>gmCV2)},
+      {label:'⬤ Bajo rend · Alta estab',color:'#1B4F8A',mats:matSt.filter(s=>s.mean<gm&&s.cv<=gmCV2)},
+      {label:'⬤ Bajo rend · Baja estab',color:'#B83232',mats:matSt.filter(s=>s.mean<gm&&s.cv>gmCV2)},
+    ];
+    quadWrap.innerHTML=quads.filter(q=>q.mats.length).map(q=>`
+      <div class="card" style="margin-bottom:8px">
+        <div style="font-size:11px;font-weight:700;color:${q.color};margin-bottom:7px">${q.label}</div>
+        ${q.mats.sort((a,b)=>b.mean-a.mean).map(ms=>`
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #F0EEEA;font-size:11.5px">
+            <span style="color:#1A1A1A;font-weight:700">${ms.m}</span>
+            <span style="color:#555">${_fmt(ms.mean)} kg · CV ${_fmtd(ms.cv)}%</span>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  const b=document.getElementById('p6-badge');
+  if(b) b.textContent=matSt.length+' materiales';
+}
+
+// ── P7 ─────────────────────────────────────────────────────────────
+function renderP7(){
+  const data=_P7D;
+
+  // Update badge
+  const b7=document.getElementById('p7-badge');
+  if(b7) b7.textContent=data.length+' obs · 10 sitios';
+
+  // Compute Pearson r
+  function pearsonR(pts,xk,yk){
+    const v=pts.filter(d=>d[xk]!=null&&d[yk]!=null);
+    if(v.length<3) return null;
+    const n=v.length,mx=v.reduce((a,b)=>a+b[xk],0)/n,my=v.reduce((a,b)=>a+b[yk],0)/n;
+    const num=v.reduce((s,d)=>s+(d[xk]-mx)*(d[yk]-my),0);
+    const dx=Math.sqrt(v.reduce((s,d)=>s+(d[xk]-mx)**2,0));
+    const dy=Math.sqrt(v.reduce((s,d)=>s+(d[yk]-my)**2,0));
+    return (dx&&dy)?num/(dx*dy):null;
+  }
+  // Update live correlation values in the static cards
+  const rg=pearsonR(data,'g','r'), rp=pearsonR(data,'p','r');
+  const cg=document.querySelector('#sec-p7 .card div[style*="color:var(--gd)"]');
+  const cp=document.querySelector('#sec-p7 .card div[style*="color:var(--gm)"]');
+  if(cg&&rg!=null) cg.textContent='r = '+rg.toFixed(3).replace('.',',');
+  if(cp&&rp!=null) cp.textContent='r = '+rp.toFixed(3).replace('.',',');
+
+  function drawScatter(wrap,xKey,yKey,xLabel){
+    if(!wrap) return;
+    const pts=data.filter(d=>d[xKey]!=null&&d[yKey]!=null);
+    if(!pts.length){wrap.innerHTML='<div style="padding:20px;color:#AAA;text-align:center;font-size:11px">Sin datos</div>';return;}
+    const W=wrap.offsetWidth||310;
+    const H=250,PL=46,PR=16,PB=36,PT=16;
+    const xs=pts.map(d=>d[xKey]),ys=pts.map(d=>d[yKey]);
+    const xPad=(Math.max(...xs)-Math.min(...xs))*0.08||50;
+    const yPad=(Math.max(...ys)-Math.min(...ys))*0.08||100;
+    const xMin=Math.min(...xs)-xPad,xMax=Math.max(...xs)+xPad;
+    const yMin=Math.min(...ys)-yPad,yMax=Math.max(...ys)+yPad;
+    const xp=v=>PL+(v-xMin)/(xMax-xMin)*(W-PL-PR);
+    const yp=v=>PT+(yMax-v)/(yMax-yMin)*(H-PT-PB);
+    const n=pts.length,mx=xs.reduce((a,b)=>a+b,0)/n,my=ys.reduce((a,b)=>a+b,0)/n;
+    const b1=pts.reduce((s,d)=>s+(d[xKey]-mx)*(d[yKey]-my),0)/pts.reduce((s,d)=>s+(d[xKey]-mx)**2,0);
+    const b0=my-b1*mx;
+    const rx1=Math.min(...xs),rx2=Math.max(...xs);
+    let o='';
+    const xStep=(xMax-xMin)>1000?500:250;
+    const yStep=(yMax-yMin)>2000?1000:500;
+    for(let v=Math.ceil(xMin/xStep)*xStep;v<=xMax;v+=xStep){
+      o+=`<line x1="${xp(v)}" y1="${PT}" x2="${xp(v)}" y2="${H-PB}" stroke="#F0EFEB" stroke-width="0.5"/>`;
+      o+=`<text x="${xp(v)}" y="${H-PB+12}" font-family="Arial,Helvetica,sans-serif" font-size="8.5" fill="#777" text-anchor="middle">${Math.round(v)}</text>`;
+    }
+    for(let v=Math.ceil(yMin/yStep)*yStep;v<=yMax;v+=yStep){
+      o+=`<line x1="${PL}" y1="${yp(v)}" x2="${W-PR}" y2="${yp(v)}" stroke="#F0EFEB" stroke-width="0.5"/>`;
+      o+=`<text x="${PL-3}" y="${yp(v)+3}" font-family="Arial,Helvetica,sans-serif" font-size="8.5" fill="#777" text-anchor="end">${Math.round(v)}</text>`;
+    }
+    o+=`<rect x="${PL}" y="${PT}" width="${W-PL-PR}" height="${H-PT-PB}" fill="none" stroke="#E4E2DC" stroke-width="0.5"/>`;
+    o+=`<line x1="${xp(rx1)}" y1="${yp(b0+b1*rx1)}" x2="${xp(rx2)}" y2="${yp(b0+b1*rx2)}" stroke="#B83232" stroke-width="1.5" opacity="0.7"/>`;
+    const rv=pearsonR(pts,xKey,'r');
+    if(rv!=null) o+=`<text x="${W-PR-4}" y="${PT+12}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#4A7C2E" text-anchor="end" font-weight="700">r = ${rv.toFixed(3).replace('.',',')}</text>`;
+    pts.forEach(d=>{
+      const col=_CICLO_COL[d.c]||'#888';
+      o+=`<circle cx="${xp(d[xKey])}" cy="${yp(d[yKey])}" r="4" fill="${col}" opacity="0.6" stroke="rgba(255,255,255,.5)" stroke-width="1"/>`;
+    });
+    o+=`<text x="${PL+(W-PL-PR)/2}" y="${H-2}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#666" text-anchor="middle" font-weight="700">${xLabel}</text>`;
+    o+=`<text x="12" y="${PT+(H-PT-PB)/2}" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#666" text-anchor="middle" font-weight="700" transform="rotate(-90,12,${PT+(H-PT-PB)/2})">Rendimiento (kg/ha)</text>`;
+    wrap.innerHTML=`<svg width="${W}" height="${H}" style="display:block;overflow:visible">${o}</svg>`;
+  }
+  drawScatter(document.getElementById('p7-scatter-g'),'g','r','Granos/m\xb2');
+  drawScatter(document.getElementById('p7-scatter-p'),'p','r','Peso de mil granos (g)');
+}
+
+// ── P8 FW ─────────────────────────────────────────────────────────
+function _fwCompute(data){
+  const gm=data.reduce((a,b)=>a+b.r,0)/data.length;
+  const envSum={},envN={};
+  data.forEach(r=>{const k=r.s;envSum[k]=(envSum[k]||0)+r.r;envN[k]=(envN[k]||0)+1;});
+  const envEI={};
+  Object.keys(envSum).forEach(k=>envEI[k]=envSum[k]/envN[k]-gm);
+  const mats=[...new Set(data.map(r=>r.m))];
+  return mats.map(m=>{
+    const obs=data.filter(r=>r.m===m);
+    const pts=obs.map(r=>({x:envEI[r.s]||0,y:r.r}));
+    if(pts.length<3) return null;
+    const n=pts.length;
+    const mx=pts.reduce((a,b)=>a+b.x,0)/n,my=pts.reduce((a,b)=>a+b.y,0)/n;
+    const cov=pts.reduce((s,p)=>s+(p.x-mx)*(p.y-my),0);
+    const vx=pts.reduce((s,p)=>s+(p.x-mx)**2,0);
+    const b1=vx>0?cov/vx:1;
+    const row=_P3D.find(r=>r.m===m)||{};
+    const idx=my/gm*100-100;
+    return {m,mean:my,beta:b1,n,ciclo:row.c||'',emp:row.e||'',idx};
+  }).filter(Boolean).sort((a,b)=>b.mean-a.mean);
+}
+function renderP8(){
+  const fc=document.getElementById('f8-ciclo')?.value||'';
+  const data=_P3D.filter(r=>!fc||r.c===fc);
+  const fw=_fwCompute(data);
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:_GM;
+
+  const b=document.getElementById('p8-badge');
+  if(b) b.textContent=fw.length+' materiales (F-W)';
+
+  const wrap=document.getElementById('p8-fw-cards');
+  if(!wrap) return;
+  const maxMean=fw.length?fw[0].mean:gm;
+  wrap.innerHTML=fw.map((fw2,i)=>{
+    const col=_CICLO_COL[fw2.ciclo]||'#888';
+    const bg=_CICLO_BG[fw2.ciclo]||'#F4F4F4';
+    const tx=_CICLO_TX[fw2.ciclo]||'#444';
+    const b=fw2.beta;
+    let prof,pc;
+    if(b<0.9){prof='Amb. desfavorables';pc='#2563EB';}
+    else if(b<=1.1){prof='Adaptación amplia (β≈1)';pc='#2D7A3A';}
+    else if(b<=1.3){prof='Resp. favorables';pc='#E8751A';}
+    else{prof='Específico alto potencial';pc='#B83232';}
+    const bStr=_fmtd(b,3);
+    const idxStr=(fw2.idx>=0?'+':'')+_fmtd(fw2.idx)+'%';
+    const idxCol=fw2.idx>=0?'#2D7A3A':'#B83232';
+    const barW=Math.round(fw2.mean/maxMean*100);
+    // Beta bar: centered at 50% = beta 1.0
+    const betaCtr=50;
+    const betaBarPos=b>=1;
+    const betaBarW=Math.round(Math.min(50,Math.abs(b-1)*40));
+    return `<div class="fw-card">
+      <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px">
+        <div style="font-size:11px;font-weight:700;color:#888;min-width:22px">#${i+1}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:#1A1A1A">${fw2.m}</div>
+          <div style="font-size:10px;color:#888;margin-top:2px">${fw2.emp} · <span style="font-size:9px;font-weight:700;padding:1.5px 5px;border-radius:2px;background:${bg};color:${tx}">${fw2.ciclo}</span></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:15px;font-weight:700">${_fmt(fw2.mean)}</div>
+          <div style="font-size:10px;color:${idxCol};font-weight:700">${idxStr}</div>
+        </div>
+      </div>
+      <div class="fw-bar-row">
+        <div class="fw-bar-label" style="color:${col};font-weight:700">β=${bStr}</div>
+        <div class="fw-bar-wrap">
+          ${betaBarPos?
+            `<div style="position:absolute;left:50%;width:${betaBarW}%;height:100%;background:${col};border-radius:0 4px 4px 0;opacity:.8"></div>`:
+            `<div style="position:absolute;right:50%;width:${betaBarW}%;height:100%;background:${col};border-radius:4px 0 0 4px;opacity:.8"></div>`
+          }
+          <div class="fw-bar-mid"></div>
+        </div>
+        <div class="fw-bar-val" style="color:${pc};font-size:9px">${prof}</div>
+      </div>
+      <div style="height:8px;background:#EEEEEB;border-radius:4px;overflow:hidden;margin-top:8px">
+        <div style="width:${barW}%;height:100%;background:${col};border-radius:4px;opacity:.75"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── P9 MC ─────────────────────────────────────────────────────────
+function renderP9(){
+  const b=document.getElementById('p9-badge');
+  const obs=document.getElementById('p9-mcobs');
+  if(b) b.textContent='4 campañas · '+_MC.length+' obs';
+  if(obs) obs.textContent=_MC.length;
+
+  // Materials list
+  const mlWrap=document.getElementById('p9-mats-list');
+  if(mlWrap){
+    const mcMats=[...new Set(_MC.filter(r=>r.camp==='2025-26').map(r=>r.mat))];
+    mlWrap.innerHTML=mcMats.map(m=>{
+      const camps=new Set(_MC.filter(r=>r.mat===m).map(r=>r.camp));
+      const emp=_MC_EMP[m]||'';
+      const row=_P3D.find(r=>r.m===m)||{};
+      const col=_CICLO_COL[row.c||'']||'#888';
+      const bg=_CICLO_BG[row.c||'']||'#F4F4F4';
+      const tx=_CICLO_TX[row.c||'']||'#444';
+      return `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #F0EEEA">
+        <div style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0"></div>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700;color:#1A1A1A">${m}</div>
+          <div style="font-size:10px;color:#888">${emp}</div>
+        </div>
+        <div style="font-size:10px;color:#555">${camps.size} camp.</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Camp means chart
+  const campWrap=document.getElementById('p9-camp-chart');
+  if(campWrap){
+    const camps=['2022-23','2023-24','2024-25','2025-26'];
+    const campStats=camps.map(c=>{
+      const v=_MC.filter(r=>r.camp===c).map(r=>r.r);
+      if(!v.length) return null;
+      const mean=v.reduce((a,b)=>a+b,0)/v.length;
+      return {c,mean,n:v.length};
+    }).filter(Boolean);
+    const maxM=Math.max(...campStats.map(s=>s.mean));
+    campWrap.innerHTML=campStats.map(s=>{
+      const barW=Math.round(s.mean/maxM*100);
+      return `<div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
+          <span style="font-weight:700;color:#1A1A1A">${s.c}</span>
+          <span style="color:#555">${_fmt(s.mean)} kg/ha <span style="color:#888;font-size:10px">n=${s.n}</span></span>
+        </div>
+        <div style="height:10px;background:#EEEEEB;border-radius:5px;overflow:hidden">
+          <div style="width:${barW}%;height:100%;background:#2D5A1B;border-radius:5px;opacity:.85"></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+// ── P10 MC FW ────────────────────────────────────────────────────
+function renderP10(){
+  const fm=document.getElementById('f10-mat')?.value||'';
+  const data=_MC.filter(r=>!fm||r.mat===fm);
+  const gm=data.length?data.reduce((a,b)=>a+b.r,0)/data.length:0;
+  if(!gm){return;}
+  const envSum={},envN={};
+  data.forEach(r=>{const k=r.sitio+'|'+r.camp;envSum[k]=(envSum[k]||0)+r.r;envN[k]=(envN[k]||0)+1;});
+  const envEI={};
+  Object.keys(envSum).forEach(k=>envEI[k]=envSum[k]/envN[k]-gm);
+  const mats=[...new Set(data.map(r=>r.mat))];
+  const fwData=mats.map(mat=>{
+    const obs=data.filter(r=>r.mat===mat);
+    const pts=obs.map(r=>({x:envEI[r.sitio+'|'+r.camp]||0,y:r.r}));
+    if(pts.length<3) return null;
+    const n=pts.length;
+    const mx=pts.reduce((a,b)=>a+b.x,0)/n,my=pts.reduce((a,b)=>a+b.y,0)/n;
+    const cov=pts.reduce((s,p)=>s+(p.x-mx)*(p.y-my),0);
+    const vx=pts.reduce((s,p)=>s+(p.x-mx)**2,0);
+    const b1=vx>0?cov/vx:1;
+    return {mat,mean:my,beta:b1,n,emp:_MC_EMP[mat]||''};
+  }).filter(Boolean).sort((a,b)=>b.mean-a.mean);
+
+  const b=document.getElementById('p10-badge');
+  if(b) b.textContent=fwData.length+' materiales · '+data.length+' obs';
+
+  const wrap=document.getElementById('p10-fw-cards');
+  if(!wrap) return;
+  const maxM=fwData.length?fwData[0].mean:gm;
+  wrap.innerHTML=fwData.map((fw,i)=>{
+    const beta=fw.beta;
+    let prof,pc;
+    if(beta<0.9){prof='Conservador';pc='#2563EB';}
+    else if(beta<=1.1){prof='Adaptación amplia (β≈1)';pc='#2D7A3A';}
+    else if(beta<=1.3){prof='Responsivo';pc='#E8751A';}
+    else{prof='Específico alto potencial';pc='#B83232';}
+    const barW=Math.round(fw.mean/maxM*100);
+    const betaBarW=Math.round(Math.min(50,Math.abs(beta-1)*40));
+    const betaBarPos=beta>=1;
+    return `<div class="fw-card">
+      <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px">
+        <div style="font-size:11px;font-weight:700;color:#888;min-width:22px">#${i+1}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:#1A1A1A">${fw.mat}</div>
+          <div style="font-size:10px;color:#888">${fw.emp} · n=${fw.n} obs</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:15px;font-weight:700">${_fmt(fw.mean)}</div>
+          <div style="font-size:10px;color:#555">kg/ha media</div>
+        </div>
+      </div>
+      <div class="fw-bar-row">
+        <div class="fw-bar-label" style="color:${pc};font-weight:700">β=${_fmtd(beta,3)}</div>
+        <div class="fw-bar-wrap">
+          ${betaBarPos?
+            `<div style="position:absolute;left:50%;width:${betaBarW}%;height:100%;background:${pc};border-radius:0 4px 4px 0;opacity:.8"></div>`:
+            `<div style="position:absolute;right:50%;width:${betaBarW}%;height:100%;background:${pc};border-radius:4px 0 0 4px;opacity:.8"></div>`
+          }
+          <div class="fw-bar-mid"></div>
+        </div>
+        <div class="fw-bar-val" style="color:${pc};font-size:9px">${prof}</div>
+      </div>
+      <div style="height:8px;background:#EEEEEB;border-radius:4px;overflow:hidden;margin-top:8px">
+        <div style="width:${barW}%;height:100%;background:#2D5A1B;border-radius:4px;opacity:.75"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── TOUCH HANDLERS ────────────────────────────────────────────────
+// Supplements onclick on <div> elements for iOS Safari (click inside
+// overflow-y:auto scroll container is unreliable without this).
+// Uses pointerdown (with touchstart fallback). Per-element _tapped
+// flag prevents double-fire with existing onclick handlers.
+function _addTouch(el, fn) {
+  if (!el || el._touchBound) return;
+  el._touchBound = true;
+  var fired = false;
+  if (window.PointerEvent) {
+    el.addEventListener('pointerdown', function(e) {
+      if (e.pointerType === 'mouse') return;
+      fired = true;
+      fn.call(el);
+      setTimeout(function(){ fired = false; }, 600);
+    }, {passive: true});
+    el.addEventListener('click', function(e) {
+      if (fired) { e.stopImmediatePropagation(); fired = false; }
+    }, true);
+  } else {
+    el.addEventListener('touchstart', function(e) {
+      fired = true;
+      fn.call(el);
+      setTimeout(function(){ fired = false; }, 600);
+    }, {passive: true});
+    el.addEventListener('click', function(e) {
+      if (fired) { e.stopImmediatePropagation(); fired = false; }
+    }, true);
+  }
+}
+
+function initTouchHandlers() {
+  // Drawer overlay close
+  _addTouch(document.getElementById('drawer-overlay'), closeDrawer);
+  // Home quick-access nav-cards
+  document.querySelectorAll('.nav-card[onclick]').forEach(function(el) {
+    var m = (el.getAttribute('onclick')||'').match(/showSec\('(\w+)'\)/);
+    if (m) { var sec = m[1]; _addTouch(el, function(){ showSec(sec); }); }
+  });
+  // Filter toggles
+  document.querySelectorAll('.fbar-toggle[onclick]').forEach(function(el) {
+    var m = (el.getAttribute('onclick')||'').match(/toggleFbar\('(\w+)'\)/);
+    if (m) { var id = m[1]; _addTouch(el, function(){ toggleFbar(id); }); }
+  });
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ── KPIs ──────────────────────────────────────────────────────
+  var N = _P3D.length;
+  var gm = _P3D.reduce(function(a,b){return a+b.r;}, 0) / N;
+  var sd = Math.sqrt(_P3D.reduce(function(s,r){return s+(r.r-gm)*(r.r-gm);}, 0) / N);
+  var cv = sd / gm * 100;
+  function set(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
+  set('hm-gm',   _fmt(gm));
+  set('hm-mats', new Set(_P3D.map(function(r){return r.m;})).size);
+  set('hm-cv',   _fmtd(cv) + '%');
+  set('drw-gm',  _fmt(gm) + ' kg/ha');
+  set('drw-n',   N);
+  set('drw-mats',new Set(_P3D.map(function(r){return r.m;})).size);
+  set('drw-emps',new Set(_P3D.map(function(r){return r.e;})).size);
+  set('drw-cv',  _fmtd(cv) + '%');
+  set('p9-mcobs',_MC.length);
+
+  // ── EVENT LISTENERS ───────────────────────────────────────────
+  // All interactive controls wired here — NO inline onclick/onchange.
+  // Using click (works on desktop) + touchend (works on mobile).
+  // touchend + preventDefault() stops the 300ms delayed click from also firing.
+
+  function on(el, fn) {
+    if (!el) return;
+    el.addEventListener('click', fn);
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      fn.call(el, e);
+    }, {passive: false});
+  }
+
+  // Hamburger
+  on(document.getElementById('hamburger'), toggleDrawer);
+
+  // Drawer overlay (close)
+  on(document.getElementById('drawer-overlay'), closeDrawer);
+
+  // Drawer nav items
+  document.querySelectorAll('[data-sec]').forEach(function(el) {
+    var sec = el.getAttribute('data-sec');
+    on(el, function() {
+      showSec(sec);
+      if (el.classList.contains('drw-item')) closeDrawer();
+    });
+  });
+
+  // Bottom navbar — derive section from id (nb-home → home, nb-p3 → p3)
+  document.querySelectorAll('.nb-item').forEach(function(el) {
+    var sec = el.id.replace('nb-', '');
+    on(el, function() { showSec(sec); });
+  });
+
+  // Filter toggles
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var target = el.getAttribute('data-target');
+    on(el, function() { toggleFbar(target); });
+  });
+
+  // Filter resets
+  var resetFns = {
+    '3': resetP3, '4': resetP4, '5': resetP5,
+    '6': resetP6, '8': resetP8, '10': resetP10
+  };
+  document.querySelectorAll('[data-page]').forEach(function(el) {
+    var pg = el.getAttribute('data-page');
+    if (resetFns[pg]) on(el, resetFns[pg]);
+  });
+
+  // Filter selects
+  document.querySelectorAll('[data-render]').forEach(function(el) {
+    var fn = el.getAttribute('data-render');
+    el.addEventListener('change', function() {
+      if (fn === 'renderP3') renderP3();
+      else if (fn === 'renderP4') renderP4();
+      else if (fn === 'renderP5') renderP5();
+      else if (fn === 'renderP6') renderP6();
+      else if (fn === 'renderP8') renderP8();
+      else if (fn === 'renderP10') renderP10();
+    });
+  });
+
+  // ── INITIAL RENDER ────────────────────────────────────────────
+  setTimeout(function() { renderP1(); }, 100);
+});
+
+
+// ── RESIZE: re-render active section charts ──────────────────────
+window.addEventListener('resize', function(){
+  clearTimeout(window._resizeTimer);
+  window._resizeTimer = setTimeout(function(){
+    const id = _curSec;
+    if(id==='p2'){_p2drawChron();_p2drawSiteCards();}
+    if(id==='p3') renderP3();
+    if(id==='p4') renderP4();
+    if(id==='p5') renderP5();
+    if(id==='p6') renderP6();
+    if(id==='p7') renderP7();
+    if(id==='p8') renderP8();
+  }, 200);
+});
+</script>
+</body>
+</html>
